@@ -22,7 +22,7 @@
         {
             case CameraTypeInfiniteUp: speed = CGVectorMake(0.0f, 20.0f); break;
             case CameraTypeFollowPlayer: speed = CGVectorMake(0.0f, 4.0f); break;
-            default: speed = CGVectorMake(0.0f, 0.0f); break; NSLog(@"test");
+            default: speed = CGVectorMake(0.0f, 0.0f); break;
         }
     }
     
