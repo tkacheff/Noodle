@@ -46,6 +46,7 @@
 
 -(CGVector) update:(CFTimeInterval)currentTime character:(Character*) character
 {
+    NSLog(@"yeah");
     if (lastTimeUpdate == 0)
     {
         lastTimeUpdate = currentTime;
