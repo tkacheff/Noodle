@@ -8,12 +8,10 @@
 
 #import <SpriteKit/SpriteKit.h>
 
-@interface InGameUI : SKNode
+@interface InGameUI : NSObject
 {
-    NSArray* jumps;
-    SKSpriteNode* pauseButton;
+    SKView* parentView;
 }
 
--(id) initWithSize:(CGSize)size numOfJumps:(int) numOfJumps;
-
+-(id) initWithView:(SKView*) view;
 @end

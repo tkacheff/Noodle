@@ -9,12 +9,14 @@
 @class Character;
 @class Camera;
 @class SceneryManager;
+@class InGameUI;
 
 @interface FirstGameScene : SKScene<SKPhysicsContactDelegate>
 {
     Character *character;
     Camera *camera;
     SceneryManager* sceneryManager;
+    InGameUI* ui;
     
     SKNode* world;
 }

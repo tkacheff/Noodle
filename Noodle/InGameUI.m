@@ -8,49 +8,28 @@
 
 #import "InGameUI.h"
 
-#define PAUSE_BUTTON_SIZE 45.0f
+#define PAUSE_BUTTON_SIZE 32.0f
 
 @implementation InGameUI
 
--(id) initWithSize:(CGSize)size numOfJumps:(int) numOfJumps;
+-(id) initWithView:(SKView*) view
 {
     if (self = [super init])
     {
-        NSMutableArray* tempArray = [[NSMutableArray alloc] initWithCapacity:numOfJumps];
-        for (int i = 0; i < numOfJumps; ++i)
-        {
-            SKSpriteNode* jumpView = [[SKSpriteNode alloc] initWithColor:[UIColor purpleColor] size:CGSizeMake(32, 32)];
-            [jumpView setPosition:CGPointMake(self.frame.size.width - ((i + 1) * 32), 5)];
-            [tempArray addObject:jumpView];
-        }
-        jumps = [[NSArray alloc] initWithArray:tempArray];
+        parentView = view;
         
-        pauseButton = [[SKSpriteNode alloc] initWithColor:[SKColor greenColor] size:CGSizeMake(PAUSE_BUTTON_SIZE, PAUSE_BUTTON_SIZE)];
-        [pauseButton setPosition:CGPointMake(-size.width/2.0f + PAUSE_BUTTON_SIZE/2.0f, size.height/2.0f - PAUSE_BUTTON_SIZE/2.0f)];
- 
-        [self addChild:pauseButton];
+        UIButton* button = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, PAUSE_BUTTON_SIZE, PAUSE_BUTTON_SIZE)];
+        button.backgroundColor = [UIColor blueColor];
+        [button addTarget:self action:@selector(pauseButtonTapped) forControlEvents:UIControlEventTouchUpInside];
+        [parentView addSubview:button];
     }
     
     return self;
 }
 
--(void)touchesBegan:(NSSet*)touches withEvent:(UIEvent*)event
+-(void) pauseButtonTapped
 {
-    NSLog(@"touchy");
+    parentView.scene.view.paused = !parentView.scene.view.paused;
 }
 
--(void)touchesMoved:(NSSet*)touches withEvent:(UIEvent*)event
-{
-    
-}
-
--(void)touchesEnded:(NSSet*)touches withEvent:(UIEvent*)event
-{
-    
-}
-
--(void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event
-{
-    
-}
 @end
