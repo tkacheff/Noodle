@@ -12,8 +12,6 @@
 @interface UserInputController : SKView
 {
     float lastTimeUpdate;
-    UITouch* flingTouch;
-    CGPoint initFlingPos;
 }
 
 -(void)touchesBegan:(NSSet*)touches withEvent:(UIEvent*)event;

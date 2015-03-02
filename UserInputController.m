@@ -23,73 +23,52 @@
 
 -(void)touchesBegan:(NSSet*)touches withEvent:(UIEvent*)event
 {
-    if (flingTouch == nil)
+    Character* character = (Character*) [self.scene childNodeWithName:@"World//Character"];
+    if (character)
     {
-        for (UITouch* newTouch in touches)
+        UITouch* returnTouch = [character touchesBegan:touches withEvent:event];
+        if (!returnTouch)
         {
-            flingTouch = newTouch;
-            initFlingPos = [flingTouch locationInNode:self.scene];
-            
-            Character* character = (Character*) [self.scene childNodeWithName:@"World//Character"];
-            if (character)
-            {
-                [character startFlingLine];
-            }
-            
-            break;
+            //todo: other processing?
         }
     }
 }
 
 -(void)touchesMoved:(NSSet*)touches withEvent:(UIEvent*)event
 {
-    for (UITouch* newTouch in touches)
+    Character* character = (Character*) [self.scene childNodeWithName:@"World//Character"];
+    if (character)
     {
-        if (newTouch == flingTouch)
+        UITouch* returnTouch = [character touchesMoved:touches withEvent:event];
+        if (!returnTouch)
         {
-            Character* character = (Character*) [self.scene childNodeWithName:@"World//Character"];
-            if (character)
-            {
-                [character updateFlingLine:[flingTouch locationInNode:self.scene] initPos:initFlingPos];
-            }
-            
-            break;
+            //todo: other processing?
         }
     }
 }
 
 -(void)touchesEnded:(NSSet*)touches withEvent:(UIEvent*)event
 {
-    for (UITouch* newTouch in touches)
+    Character* character = (Character*) [self.scene childNodeWithName:@"World//Character"];
+    if (character)
     {
-        if (newTouch == flingTouch)
+        UITouch* returnTouch = [character touchesEnded:touches withEvent:event];
+        if (!returnTouch)
         {
-            Character* character = (Character*) [self.scene childNodeWithName:@"World//Character"];
-            if (character)
-            {
-                [character finishFlingLine:[flingTouch locationInNode:self.scene] initPos:initFlingPos];
-            }
-            
-            flingTouch = nil;
-            break;
+            //todo: other processing?
         }
     }
 }
 
 -(void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    for (UITouch* cancelledTouch in touches)
+    Character* character = (Character*) [self.scene childNodeWithName:@"World//Character"];
+    if (character)
     {
-        if (cancelledTouch == flingTouch)
+        UITouch* returnTouch = [character touchesCancelled:touches withEvent:event];
+        if (!returnTouch)
         {
-            flingTouch = nil;
-            
-            Character* character = (Character*) [self.scene childNodeWithName:@"World//Character"];
-            if (character)
-            {
-                [character cancelFlingLine];
-            }
-            
+            //todo: other processing?
         }
     }
 }

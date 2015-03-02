@@ -8,36 +8,27 @@
 
 #import <SpriteKit/SpriteKit.h>
 
-typedef NS_ENUM(NSInteger, MovementState) {
-    MovementStateGrounded,
-    MovementStateWallSlide,
-    MovementStateInAir,
-    MovementStateGroundPound
-};
-
 @interface Character : SKSpriteNode
 {
     float lastTimeUpdate;
-    float lastForceUpdateTime;
     
-    CGVector currentForce;
-    float maxImpulseForce;
+    float maxFlingImpulseConstant;
     
     SKSpriteNode* flingLine;
     
     BOOL touchingPlatform;
-    int inAirFlingCount;
+    int inAirFlingRemainCount;
+    float ceilingHangTime;
     
-    MovementState state;
+    bool isTap;
+    UITouch* flingTouch;
+    CGPoint initFlingPos;
 }
 
-@property (nonatomic) CGVector currentForce;
 
 -(id)initWithSize:(CGSize)size;
 
 -(void) update:(CFTimeInterval)currentTime;
-
--(void) setCurrentForce:(CGVector)currentForce;
 
 -(void) startFlingLine;
 -(void) updateFlingLine:(CGPoint) newPos initPos:(CGPoint) initPos;
@@ -46,5 +37,10 @@ typedef NS_ENUM(NSInteger, MovementState) {
 
 -(void) endTouchBody:(SKPhysicsBody*) otherBody contactNormal:(CGVector)contactNormal;
 -(void) startTouchBody:(SKPhysicsBody*) otherBody contactNormal:(CGVector)contactNormal;
+
+-(UITouch*)touchesBegan:(NSSet*)touches withEvent:(UIEvent*)event;
+-(UITouch*)touchesMoved:(NSSet*)touches withEvent:(UIEvent*)event;
+-(UITouch*)touchesEnded:(NSSet*)touches withEvent:(UIEvent*)event;
+-(UITouch*)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event;
 
 @end

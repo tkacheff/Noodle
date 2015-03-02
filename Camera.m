@@ -29,9 +29,15 @@
     return self;
 }
 
--(void) infiniteUpUpdate:(float) timeDelta
+-(void) infiniteUpUpdate:(float) timeDelta character:(Character*) character
 {
     float amountToMove = speed.dy * timeDelta;
+    if (character.position.y > self.position.y )
+    {
+        const float times = (character.position.y/self.position.y) * 2.5f;
+        amountToMove *= times;
+    }
+    
     self.position = CGPointMake(self.position.x, self.position.y + amountToMove);
 }
 
@@ -58,7 +64,7 @@
     switch (cameraType)
     {
         case CameraTypeInfiniteUp:
-            [self infiniteUpUpdate:timeDelta];
+            [self infiniteUpUpdate:timeDelta character:character];
             break;
         case CameraTypeFollowPlayer:
             [self followPlayerUpdate:timeDelta character:character];

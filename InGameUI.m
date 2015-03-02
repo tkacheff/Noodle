@@ -33,4 +33,24 @@
     
     return self;
 }
+
+-(void)touchesBegan:(NSSet*)touches withEvent:(UIEvent*)event
+{
+    NSLog(@"touchy");
+}
+
+-(void)touchesMoved:(NSSet*)touches withEvent:(UIEvent*)event
+{
+    
+}
+
+-(void)touchesEnded:(NSSet*)touches withEvent:(UIEvent*)event
+{
+    
+}
+
+-(void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    
+}
 @end

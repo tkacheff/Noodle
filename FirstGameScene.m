@@ -97,17 +97,22 @@ static const uint32_t paddleCategory = 0x1 << 3; // 0000000000000000000000000000
     [self addChild:sceneryManager];
     
     SKSpriteNode* background = [[SKSpriteNode alloc] initWithTexture:[SKTexture textureWithImageNamed:@"TestBackground.png"]];
-    [background setSize:CGSizeMake(size.width, size.height * 4.0f)];
+
+    [background setSize:CGSizeMake(size.width, world.scene.size.height * 10.0f)];
     [background setZPosition:1];
     [sceneryManager addChild:background];
     
     character = [[Character alloc] initWithSize:size];
     character.zPosition = 5;
     [world addChild:character];
-    
-    InGameUI *ui = [[InGameUI alloc] initWithSize:self.size numOfJumps:2];
-    ui.zPosition = 1000;
-    [self addChild:ui];
+}
+
+-(void)didMoveToView:(SKView *)view
+{
+    UIButton* button = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 32, 32)];
+    button.backgroundColor = [UIColor blueColor];
+    //button set
+    [self.view addSubview:button];
 }
 
 - (void)didEndContact:(SKPhysicsContact *)contact
