@@ -1,0 +1,466 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		66DF6A1717FB871B00CC9BD1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66DF6A1617FB871B00CC9BD1 /* Foundation.framework */; };
+		66DF6A1917FB871B00CC9BD1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66DF6A1817FB871B00CC9BD1 /* CoreGraphics.framework */; };
+		66DF6A1B17FB871B00CC9BD1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66DF6A1A17FB871B00CC9BD1 /* UIKit.framework */; };
+		66DF6A1D17FB871B00CC9BD1 /* SpriteKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66DF6A1C17FB871B00CC9BD1 /* SpriteKit.framework */; };
+		9419345E1AA30D7D00DDEA00 /* InGameUI.m in Sources */ = {isa = PBXBuildFile; fileRef = 9419345D1AA30D7D00DDEA00 /* InGameUI.m */; };
+		944236FB1A95CEBA0006C68B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 94BF03951A95C979002688C6 /* Main.storyboard */; };
+		948FDDF11A95C47200C60756 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 948FDDEE1A95C47200C60756 /* main.m */; };
+		9490CE8B1A9B909400DA7382 /* Camera.m in Sources */ = {isa = PBXBuildFile; fileRef = 9490CE8A1A9B909400DA7382 /* Camera.m */; };
+		9490CE8F1A9B98F500DA7382 /* SceneryManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9490CE8E1A9B98F500DA7382 /* SceneryManager.m */; };
+		94A70DFD1A9C24F800C9598E /* backgrounds.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 94A70DFC1A9C24F800C9598E /* backgrounds.atlas */; };
+		94A70E031A9C27DF00C9598E /* Levels in Resources */ = {isa = PBXBuildFile; fileRef = 94A70E021A9C27DF00C9598E /* Levels */; };
+		94A75E7B1A9CEB8000057C48 /* UserInputController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94A75E7A1A9CEB8000057C48 /* UserInputController.m */; };
+		94BF03831A95C4C3002688C6 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 94BF03811A95C4C3002688C6 /* InfoPlist.strings */; };
+		94BF03881A95C592002688C6 /* bg@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 94BF03841A95C592002688C6 /* bg@2x~ipad.png */; };
+		94BF03891A95C592002688C6 /* bg@2x~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 94BF03851A95C592002688C6 /* bg@2x~iphone.png */; };
+		94BF038A1A95C592002688C6 /* bg@3x~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 94BF03861A95C592002688C6 /* bg@3x~iphone.png */; };
+		94BF038B1A95C592002688C6 /* bg~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 94BF03871A95C592002688C6 /* bg~ipad.png */; };
+		94BF038F1A95C93F002688C6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 94BF038E1A95C93F002688C6 /* Images.xcassets */; };
+		94BF03921A95C958002688C6 /* Character.m in Sources */ = {isa = PBXBuildFile; fileRef = 94BF03911A95C958002688C6 /* Character.m */; };
+		94BF03941A95C96D002688C6 /* Launch Screen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94BF03931A95C96D002688C6 /* Launch Screen.xib */; };
+		94BF039C1A95C98C002688C6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 94BF03991A95C98C002688C6 /* AppDelegate.m */; };
+		94BF039D1A95C98C002688C6 /* GameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94BF039B1A95C98C002688C6 /* GameViewController.m */; };
+		94BF03A31A95C99C002688C6 /* FirstGameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 94BF03A11A95C99C002688C6 /* FirstGameScene.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		66DF6A1317FB871B00CC9BD1 /* Noodle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Noodle.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		66DF6A1617FB871B00CC9BD1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		66DF6A1817FB871B00CC9BD1 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		66DF6A1A17FB871B00CC9BD1 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		66DF6A1C17FB871B00CC9BD1 /* SpriteKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SpriteKit.framework; path = System/Library/Frameworks/SpriteKit.framework; sourceTree = SDKROOT; };
+		9419345C1AA30D7D00DDEA00 /* InGameUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InGameUI.h; sourceTree = "<group>"; };
+		9419345D1AA30D7D00DDEA00 /* InGameUI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InGameUI.m; sourceTree = "<group>"; };
+		948FDDEE1A95C47200C60756 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Noodle/main.m; sourceTree = SOURCE_ROOT; };
+		948FDDEF1A95C47200C60756 /* Noodle-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "Noodle-Info.plist"; path = "Noodle/Noodle-Info.plist"; sourceTree = SOURCE_ROOT; };
+		948FDDF01A95C47200C60756 /* Noodle-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Noodle-Prefix.pch"; path = "Noodle/Noodle-Prefix.pch"; sourceTree = SOURCE_ROOT; };
+		9490CE8A1A9B909400DA7382 /* Camera.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Camera.m; sourceTree = "<group>"; };
+		9490CE8C1A9B90AB00DA7382 /* Camera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Camera.h; sourceTree = "<group>"; };
+		9490CE8D1A9B98F500DA7382 /* SceneryManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SceneryManager.h; sourceTree = "<group>"; };
+		9490CE8E1A9B98F500DA7382 /* SceneryManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SceneryManager.m; sourceTree = "<group>"; };
+		94A70DFC1A9C24F800C9598E /* backgrounds.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = backgrounds.atlas; sourceTree = "<group>"; };
+		94A70E021A9C27DF00C9598E /* Levels */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Levels; sourceTree = "<group>"; };
+		94A75E791A9CEB8000057C48 /* UserInputController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInputController.h; sourceTree = "<group>"; };
+		94A75E7A1A9CEB8000057C48 /* UserInputController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInputController.m; sourceTree = "<group>"; };
+		94BF03821A95C4C3002688C6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = Noodle/en.lproj/InfoPlist.strings; sourceTree = SOURCE_ROOT; };
+		94BF03841A95C592002688C6 /* bg@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "bg@2x~ipad.png"; path = "Noodle/Resources/backgrounds/bg@2x~ipad.png"; sourceTree = SOURCE_ROOT; };
+		94BF03851A95C592002688C6 /* bg@2x~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "bg@2x~iphone.png"; path = "Noodle/Resources/backgrounds/bg@2x~iphone.png"; sourceTree = SOURCE_ROOT; };
+		94BF03861A95C592002688C6 /* bg@3x~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "bg@3x~iphone.png"; path = "Noodle/Resources/backgrounds/bg@3x~iphone.png"; sourceTree = SOURCE_ROOT; };
+		94BF03871A95C592002688C6 /* bg~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "bg~ipad.png"; path = "Noodle/Resources/backgrounds/bg~ipad.png"; sourceTree = SOURCE_ROOT; };
+		94BF038E1A95C93F002688C6 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Noodle/Images.xcassets; sourceTree = SOURCE_ROOT; };
+		94BF03901A95C958002688C6 /* Character.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Character.h; path = Noodle/Character.h; sourceTree = SOURCE_ROOT; };
+		94BF03911A95C958002688C6 /* Character.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Character.m; path = Noodle/Character.m; sourceTree = SOURCE_ROOT; };
+		94BF03931A95C96D002688C6 /* Launch Screen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "Launch Screen.xib"; path = "Noodle/Launch Screen.xib"; sourceTree = SOURCE_ROOT; };
+		94BF03961A95C979002688C6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Noodle/Base.lproj/Main.storyboard; sourceTree = SOURCE_ROOT; };
+		94BF03981A95C98C002688C6 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Noodle/AppDelegate.h; sourceTree = SOURCE_ROOT; };
+		94BF03991A95C98C002688C6 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = Noodle/AppDelegate.m; sourceTree = SOURCE_ROOT; };
+		94BF039A1A95C98C002688C6 /* GameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameViewController.h; path = Noodle/GameViewController.h; sourceTree = SOURCE_ROOT; };
+		94BF039B1A95C98C002688C6 /* GameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GameViewController.m; path = Noodle/GameViewController.m; sourceTree = SOURCE_ROOT; };
+		94BF03A01A95C99C002688C6 /* FirstGameScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FirstGameScene.h; path = Noodle/FirstGameScene.h; sourceTree = SOURCE_ROOT; };
+		94BF03A11A95C99C002688C6 /* FirstGameScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FirstGameScene.m; path = Noodle/FirstGameScene.m; sourceTree = SOURCE_ROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		66DF6A1017FB871B00CC9BD1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				66DF6A1917FB871B00CC9BD1 /* CoreGraphics.framework in Frameworks */,
+				66DF6A1B17FB871B00CC9BD1 /* UIKit.framework in Frameworks */,
+				66DF6A1D17FB871B00CC9BD1 /* SpriteKit.framework in Frameworks */,
+				66DF6A1717FB871B00CC9BD1 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		66DF6A0A17FB871A00CC9BD1 = {
+			isa = PBXGroup;
+			children = (
+				66DF6A1E17FB871B00CC9BD1 /* Noodle */,
+				66DF6A1517FB871B00CC9BD1 /* Frameworks */,
+				66DF6A1417FB871B00CC9BD1 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		66DF6A1417FB871B00CC9BD1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				66DF6A1317FB871B00CC9BD1 /* Noodle.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		66DF6A1517FB871B00CC9BD1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				66DF6A1617FB871B00CC9BD1 /* Foundation.framework */,
+				66DF6A1817FB871B00CC9BD1 /* CoreGraphics.framework */,
+				66DF6A1A17FB871B00CC9BD1 /* UIKit.framework */,
+				66DF6A1C17FB871B00CC9BD1 /* SpriteKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		66DF6A1E17FB871B00CC9BD1 /* Noodle */ = {
+			isa = PBXGroup;
+			children = (
+				9419345A1AA30D5700DDEA00 /* UI */,
+				94A75E781A9CEB3000057C48 /* User Input */,
+				944236FA1A95CC000006C68B /* iOS Stuff */,
+				944236F91A95CBF30006C68B /* Scenes */,
+				94DC8CE21A92D80E00DC4DD8 /* Game Entities */,
+				94BF038E1A95C93F002688C6 /* Images.xcassets */,
+				66DF6A5217FB87DA00CC9BD1 /* Resources */,
+				66DF6A1F17FB871B00CC9BD1 /* Supporting Files */,
+			);
+			path = Noodle;
+			sourceTree = "<group>";
+		};
+		66DF6A1F17FB871B00CC9BD1 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				94BF03951A95C979002688C6 /* Main.storyboard */,
+				94BF03931A95C96D002688C6 /* Launch Screen.xib */,
+				94BF03811A95C4C3002688C6 /* InfoPlist.strings */,
+				948FDDEE1A95C47200C60756 /* main.m */,
+				948FDDEF1A95C47200C60756 /* Noodle-Info.plist */,
+				948FDDF01A95C47200C60756 /* Noodle-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		66DF6A5217FB87DA00CC9BD1 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				94A70E021A9C27DF00C9598E /* Levels */,
+				94A70DFC1A9C24F800C9598E /* backgrounds.atlas */,
+				66DF6A5417FB87DA00CC9BD1 /* backgrounds */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		66DF6A5417FB87DA00CC9BD1 /* backgrounds */ = {
+			isa = PBXGroup;
+			children = (
+				94BF03841A95C592002688C6 /* bg@2x~ipad.png */,
+				94BF03851A95C592002688C6 /* bg@2x~iphone.png */,
+				94BF03861A95C592002688C6 /* bg@3x~iphone.png */,
+				94BF03871A95C592002688C6 /* bg~ipad.png */,
+			);
+			path = backgrounds;
+			sourceTree = "<group>";
+		};
+		9419345A1AA30D5700DDEA00 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				9419345B1AA30D5F00DDEA00 /* In-Game */,
+			);
+			name = UI;
+			sourceTree = "<group>";
+		};
+		9419345B1AA30D5F00DDEA00 /* In-Game */ = {
+			isa = PBXGroup;
+			children = (
+				9419345C1AA30D7D00DDEA00 /* InGameUI.h */,
+				9419345D1AA30D7D00DDEA00 /* InGameUI.m */,
+			);
+			name = "In-Game";
+			sourceTree = "<group>";
+		};
+		944236F91A95CBF30006C68B /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				94BF03A01A95C99C002688C6 /* FirstGameScene.h */,
+				94BF03A11A95C99C002688C6 /* FirstGameScene.m */,
+				9490CE8D1A9B98F500DA7382 /* SceneryManager.h */,
+				9490CE8E1A9B98F500DA7382 /* SceneryManager.m */,
+			);
+			name = Scenes;
+			sourceTree = "<group>";
+		};
+		944236FA1A95CC000006C68B /* iOS Stuff */ = {
+			isa = PBXGroup;
+			children = (
+				94BF03981A95C98C002688C6 /* AppDelegate.h */,
+				94BF03991A95C98C002688C6 /* AppDelegate.m */,
+				94BF039A1A95C98C002688C6 /* GameViewController.h */,
+				94BF039B1A95C98C002688C6 /* GameViewController.m */,
+			);
+			name = "iOS Stuff";
+			sourceTree = "<group>";
+		};
+		94A75E781A9CEB3000057C48 /* User Input */ = {
+			isa = PBXGroup;
+			children = (
+				94A75E791A9CEB8000057C48 /* UserInputController.h */,
+				94A75E7A1A9CEB8000057C48 /* UserInputController.m */,
+			);
+			name = "User Input";
+			sourceTree = "<group>";
+		};
+		94DC8CE21A92D80E00DC4DD8 /* Game Entities */ = {
+			isa = PBXGroup;
+			children = (
+				94BF03901A95C958002688C6 /* Character.h */,
+				94BF03911A95C958002688C6 /* Character.m */,
+				9490CE8C1A9B90AB00DA7382 /* Camera.h */,
+				9490CE8A1A9B909400DA7382 /* Camera.m */,
+			);
+			name = "Game Entities";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		66DF6A1217FB871B00CC9BD1 /* Noodle */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 66DF6A4C17FB871B00CC9BD1 /* Build configuration list for PBXNativeTarget "Noodle" */;
+			buildPhases = (
+				66DF6A0F17FB871B00CC9BD1 /* Sources */,
+				66DF6A1017FB871B00CC9BD1 /* Frameworks */,
+				66DF6A1117FB871B00CC9BD1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Noodle;
+			productName = Noodle;
+			productReference = 66DF6A1317FB871B00CC9BD1 /* Noodle.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		66DF6A0B17FB871B00CC9BD1 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0610;
+				ORGANIZATIONNAME = "Barbara Köhler";
+				TargetAttributes = {
+					66DF6A1217FB871B00CC9BD1 = {
+						DevelopmentTeam = R479PH3KA9;
+					};
+				};
+			};
+			buildConfigurationList = 66DF6A0E17FB871B00CC9BD1 /* Build configuration list for PBXProject "Noodle" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 66DF6A0A17FB871A00CC9BD1;
+			productRefGroup = 66DF6A1417FB871B00CC9BD1 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				66DF6A1217FB871B00CC9BD1 /* Noodle */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		66DF6A1117FB871B00CC9BD1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				944236FB1A95CEBA0006C68B /* Main.storyboard in Resources */,
+				94A70E031A9C27DF00C9598E /* Levels in Resources */,
+				94BF038A1A95C592002688C6 /* bg@3x~iphone.png in Resources */,
+				94BF038B1A95C592002688C6 /* bg~ipad.png in Resources */,
+				94BF038F1A95C93F002688C6 /* Images.xcassets in Resources */,
+				94BF03881A95C592002688C6 /* bg@2x~ipad.png in Resources */,
+				94BF03831A95C4C3002688C6 /* InfoPlist.strings in Resources */,
+				94A70DFD1A9C24F800C9598E /* backgrounds.atlas in Resources */,
+				94BF03891A95C592002688C6 /* bg@2x~iphone.png in Resources */,
+				94BF03941A95C96D002688C6 /* Launch Screen.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		66DF6A0F17FB871B00CC9BD1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9490CE8B1A9B909400DA7382 /* Camera.m in Sources */,
+				9419345E1AA30D7D00DDEA00 /* InGameUI.m in Sources */,
+				94BF039D1A95C98C002688C6 /* GameViewController.m in Sources */,
+				94BF03921A95C958002688C6 /* Character.m in Sources */,
+				94A75E7B1A9CEB8000057C48 /* UserInputController.m in Sources */,
+				94BF039C1A95C98C002688C6 /* AppDelegate.m in Sources */,
+				94BF03A31A95C99C002688C6 /* FirstGameScene.m in Sources */,
+				948FDDF11A95C47200C60756 /* main.m in Sources */,
+				9490CE8F1A9B98F500DA7382 /* SceneryManager.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		94BF03811A95C4C3002688C6 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				94BF03821A95C4C3002688C6 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		94BF03951A95C979002688C6 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				94BF03961A95C979002688C6 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		66DF6A4A17FB871B00CC9BD1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		66DF6A4B17FB871B00CC9BD1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		66DF6A4D17FB871B00CC9BD1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Noodle/Noodle-Prefix.pch";
+				INFOPLIST_FILE = "Noodle/Noodle-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				SPRITEKIT_TEXTURE_ATLAS_OUTPUT = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		66DF6A4E17FB871B00CC9BD1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Noodle/Noodle-Prefix.pch";
+				INFOPLIST_FILE = "Noodle/Noodle-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				SPRITEKIT_TEXTURE_ATLAS_OUTPUT = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		66DF6A0E17FB871B00CC9BD1 /* Build configuration list for PBXProject "Noodle" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				66DF6A4A17FB871B00CC9BD1 /* Debug */,
+				66DF6A4B17FB871B00CC9BD1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		66DF6A4C17FB871B00CC9BD1 /* Build configuration list for PBXNativeTarget "Noodle" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				66DF6A4D17FB871B00CC9BD1 /* Debug */,
+				66DF6A4E17FB871B00CC9BD1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 66DF6A0B17FB871B00CC9BD1 /* Project object */;
+}
