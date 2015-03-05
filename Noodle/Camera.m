@@ -52,6 +52,12 @@
 
 -(CGVector) update:(CFTimeInterval)currentTime character:(Character*) character
 {
+    if (self.scene.view.paused)
+    {
+        lastTimeUpdate = 0;
+        return CGVectorMake(0, 0);
+    }
+    
     if (lastTimeUpdate == 0)
     {
         lastTimeUpdate = currentTime;

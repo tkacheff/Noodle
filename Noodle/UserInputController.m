@@ -23,6 +23,11 @@
 
 -(void)touchesBegan:(NSSet*)touches withEvent:(UIEvent*)event
 {
+    if (self.scene.view.paused)
+    {
+        return;
+    }
+    
     Character* character = (Character*) [self.scene childNodeWithName:@"World//Character"];
     if (character)
     {
@@ -36,6 +41,11 @@
 
 -(void)touchesMoved:(NSSet*)touches withEvent:(UIEvent*)event
 {
+    if (self.scene.view.paused)
+    {
+        return;
+    }
+    
     Character* character = (Character*) [self.scene childNodeWithName:@"World//Character"];
     if (character)
     {
@@ -49,6 +59,11 @@
 
 -(void)touchesEnded:(NSSet*)touches withEvent:(UIEvent*)event
 {
+    if (self.scene.view.paused)
+    {
+        return;
+    }
+    
     Character* character = (Character*) [self.scene childNodeWithName:@"World//Character"];
     if (character)
     {
@@ -62,6 +77,11 @@
 
 -(void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event
 {
+    if (self.scene.view.paused)
+    {
+        return;
+    }
+    
     Character* character = (Character*) [self.scene childNodeWithName:@"World//Character"];
     if (character)
     {

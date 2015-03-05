@@ -12,6 +12,7 @@
 		66DF6A1B17FB871B00CC9BD1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66DF6A1A17FB871B00CC9BD1 /* UIKit.framework */; };
 		66DF6A1D17FB871B00CC9BD1 /* SpriteKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66DF6A1C17FB871B00CC9BD1 /* SpriteKit.framework */; };
 		9419345E1AA30D7D00DDEA00 /* InGameUI.m in Sources */ = {isa = PBXBuildFile; fileRef = 9419345D1AA30D7D00DDEA00 /* InGameUI.m */; };
+		942464B61AA61DB80031E7C8 /* MainMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 942464B51AA61DB80031E7C8 /* MainMenu.m */; };
 		944236FB1A95CEBA0006C68B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 94BF03951A95C979002688C6 /* Main.storyboard */; };
 		948FDDF11A95C47200C60756 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 948FDDEE1A95C47200C60756 /* main.m */; };
 		9490CE8B1A9B909400DA7382 /* Camera.m in Sources */ = {isa = PBXBuildFile; fileRef = 9490CE8A1A9B909400DA7382 /* Camera.m */; };
@@ -29,7 +30,7 @@
 		94BF03941A95C96D002688C6 /* Launch Screen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94BF03931A95C96D002688C6 /* Launch Screen.xib */; };
 		94BF039C1A95C98C002688C6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 94BF03991A95C98C002688C6 /* AppDelegate.m */; };
 		94BF039D1A95C98C002688C6 /* GameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94BF039B1A95C98C002688C6 /* GameViewController.m */; };
-		94BF03A31A95C99C002688C6 /* FirstGameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 94BF03A11A95C99C002688C6 /* FirstGameScene.m */; };
+		94BF03A31A95C99C002688C6 /* InfiniteGameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 94BF03A11A95C99C002688C6 /* InfiniteGameScene.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,8 @@
 		66DF6A1C17FB871B00CC9BD1 /* SpriteKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SpriteKit.framework; path = System/Library/Frameworks/SpriteKit.framework; sourceTree = SDKROOT; };
 		9419345C1AA30D7D00DDEA00 /* InGameUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InGameUI.h; sourceTree = "<group>"; };
 		9419345D1AA30D7D00DDEA00 /* InGameUI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InGameUI.m; sourceTree = "<group>"; };
+		942464B41AA61DB80031E7C8 /* MainMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainMenu.h; sourceTree = "<group>"; };
+		942464B51AA61DB80031E7C8 /* MainMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainMenu.m; sourceTree = "<group>"; };
 		948FDDEE1A95C47200C60756 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Noodle/main.m; sourceTree = SOURCE_ROOT; };
 		948FDDEF1A95C47200C60756 /* Noodle-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "Noodle-Info.plist"; path = "Noodle/Noodle-Info.plist"; sourceTree = SOURCE_ROOT; };
 		948FDDF01A95C47200C60756 /* Noodle-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Noodle-Prefix.pch"; path = "Noodle/Noodle-Prefix.pch"; sourceTree = SOURCE_ROOT; };
@@ -65,8 +68,8 @@
 		94BF03991A95C98C002688C6 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = Noodle/AppDelegate.m; sourceTree = SOURCE_ROOT; };
 		94BF039A1A95C98C002688C6 /* GameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameViewController.h; path = Noodle/GameViewController.h; sourceTree = SOURCE_ROOT; };
 		94BF039B1A95C98C002688C6 /* GameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GameViewController.m; path = Noodle/GameViewController.m; sourceTree = SOURCE_ROOT; };
-		94BF03A01A95C99C002688C6 /* FirstGameScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FirstGameScene.h; path = Noodle/FirstGameScene.h; sourceTree = SOURCE_ROOT; };
-		94BF03A11A95C99C002688C6 /* FirstGameScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FirstGameScene.m; path = Noodle/FirstGameScene.m; sourceTree = SOURCE_ROOT; };
+		94BF03A01A95C99C002688C6 /* InfiniteGameScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InfiniteGameScene.h; path = Noodle/InfiniteGameScene.h; sourceTree = SOURCE_ROOT; };
+		94BF03A11A95C99C002688C6 /* InfiniteGameScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InfiniteGameScene.m; path = Noodle/InfiniteGameScene.m; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -165,6 +168,8 @@
 			isa = PBXGroup;
 			children = (
 				9419345B1AA30D5F00DDEA00 /* In-Game */,
+				942464B41AA61DB80031E7C8 /* MainMenu.h */,
+				942464B51AA61DB80031E7C8 /* MainMenu.m */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -181,8 +186,8 @@
 		944236F91A95CBF30006C68B /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
-				94BF03A01A95C99C002688C6 /* FirstGameScene.h */,
-				94BF03A11A95C99C002688C6 /* FirstGameScene.m */,
+				94BF03A01A95C99C002688C6 /* InfiniteGameScene.h */,
+				94BF03A11A95C99C002688C6 /* InfiniteGameScene.m */,
 				9490CE8D1A9B98F500DA7382 /* SceneryManager.h */,
 				9490CE8E1A9B98F500DA7382 /* SceneryManager.m */,
 			);
@@ -302,8 +307,9 @@
 				94BF039D1A95C98C002688C6 /* GameViewController.m in Sources */,
 				94BF03921A95C958002688C6 /* Character.m in Sources */,
 				94A75E7B1A9CEB8000057C48 /* UserInputController.m in Sources */,
+				942464B61AA61DB80031E7C8 /* MainMenu.m in Sources */,
 				94BF039C1A95C98C002688C6 /* AppDelegate.m in Sources */,
-				94BF03A31A95C99C002688C6 /* FirstGameScene.m in Sources */,
+				94BF03A31A95C99C002688C6 /* InfiniteGameScene.m in Sources */,
 				948FDDF11A95C47200C60756 /* main.m in Sources */,
 				9490CE8F1A9B98F500DA7382 /* SceneryManager.m in Sources */,
 			);

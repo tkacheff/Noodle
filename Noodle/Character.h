@@ -16,6 +16,7 @@
     
     SKSpriteNode* flingLine;
     
+    BOOL touchingOnSide;
     BOOL touchingPlatform;
     int inAirFlingRemainCount;
     float ceilingHangTime;

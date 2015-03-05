@@ -11,7 +11,7 @@
 @class SceneryManager;
 @class InGameUI;
 
-@interface FirstGameScene : SKScene<SKPhysicsContactDelegate>
+@interface InfiniteGameScene : SKScene<SKPhysicsContactDelegate>
 {
     Character *character;
     Camera *camera;

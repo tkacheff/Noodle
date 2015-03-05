@@ -8,14 +8,21 @@
 
 #import "SceneryManager.h"
 
+#define BACKGROUND_SPEED 1.0f
+
 @implementation SceneryManager
 
 
 -(void) update:(CFTimeInterval)currentTime camDelta:(CGVector) camDelta
 {
+    if (self.scene.view.paused)
+    {
+        return;
+    }
+    
     for (SKSpriteNode* node in self.children)
     {
-        float scaleSpeed = node.zPosition * -1.0f;
+        float scaleSpeed = node.zPosition * -BACKGROUND_SPEED;
         [node setPosition:CGPointMake(node.position.x + (camDelta.dx * scaleSpeed), node.position.y + (camDelta.dy * scaleSpeed))];
     }
 }

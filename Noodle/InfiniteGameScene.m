@@ -4,14 +4,19 @@
 //
 //
 
-#import "FirstGameScene.h"
+#import "InfiniteGameScene.h"
 #import "Character.h"
 #import "Camera.h"
 #import "SceneryManager.h"
 #import "InGameUI.h"
 
-@implementation FirstGameScene
+@implementation InfiniteGameScene
 
+
+//////////////////////////////////////////////////////////
+//
+// Level unpackaging
+///////////////////////////////////////////////
 +(void) createPhysicsBodiesHelper:(SKNode*) parent
 {
     for (SKNode* descendant in parent.children)
@@ -27,7 +32,7 @@
         }
         if (descendant.children.count > 0)
         {
-            [FirstGameScene createPhysicsBodiesHelper:descendant];
+            [InfiniteGameScene createPhysicsBodiesHelper:descendant];
         }
     }
 }
@@ -37,7 +42,7 @@
     SKNode* world = [scene childNodeWithName:@"World"];
     if (world)
     {
-        [FirstGameScene createPhysicsBodiesHelper:world];
+        [InfiniteGameScene createPhysicsBodiesHelper:world];
     }
 }
 
@@ -49,14 +54,20 @@
                                             error:nil];
     NSKeyedUnarchiver *arch = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
     [arch setClass:self forClassName:@"SKScene"];
-    FirstGameScene *scene = [arch decodeObjectForKey:NSKeyedArchiveRootObjectKey];
+    InfiniteGameScene *scene = [arch decodeObjectForKey:NSKeyedArchiveRootObjectKey];
     [arch finishDecoding];
     
-    [FirstGameScene createPhysicsBodies:scene];
+    [InfiniteGameScene createPhysicsBodies:scene];
     
     return scene;
 }
 
+
+
+//////////////////////////////////////////////////////////
+//
+// Setup
+///////////////////////////////////////////////
 -(id)initWithSize:(CGSize)size
 {
     if (self = [super initWithSize:size])
@@ -78,9 +89,7 @@
     world.physicsBody.restitution = 0.0f;
     world.physicsBody.friction = 0.0f;
     
-    CGSize size = self.size;
-    
-    camera = [[Camera alloc] initWithSize:size type:CameraTypeInfiniteUp];
+    camera = [[Camera alloc] initWithSize:self.size type:CameraTypeFollowPlayer];
     [world addChild:camera];
     
     sceneryManager = [[SceneryManager alloc] init];
@@ -88,11 +97,11 @@
     
     SKSpriteNode* background = [[SKSpriteNode alloc] initWithTexture:[SKTexture textureWithImageNamed:@"TestBackground.png"]];
 
-    [background setSize:CGSizeMake(size.width, world.scene.size.height * 10.0f)];
+    [background setSize:CGSizeMake(self.size.width, world.scene.size.height * 10.0f)];
     [background setZPosition:1];
     [sceneryManager addChild:background];
     
-    character = [[Character alloc] initWithSize:size];
+    character = [[Character alloc] initWithSize:self.size];
     character.zPosition = 5;
     [world addChild:character];
 }
@@ -100,8 +109,19 @@
 -(void)didMoveToView:(SKView *)view
 {
     ui = [[InGameUI alloc] initWithView:self.view];
+    
+    [self setup];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        self.scene.view.paused = YES;
+    });
 }
 
+
+
+//////////////////////////////////////////////////////////
+//
+// Physics Logic
+///////////////////////////////////////////////
 - (void)didEndContact:(SKPhysicsContact *)contact
 {
     // 1 Create local variables for two physics bodies
@@ -152,8 +172,32 @@
     }
     else if(secondBody == character.physicsBody)
     {
-        [character startTouchBody:secondBody contactNormal:contact.contactNormal];
+        [character startTouchBody:firstBody contactNormal:contact.contactNormal];
     }
+}
+
+-(void) setPaused:(BOOL)paused
+{
+    [super setPaused:paused];
+    
+    if (self.paused)
+    {
+        [self update:0];
+    }
+}
+
+
+//////////////////////////////////////////////////////////
+//
+// Game Logic/Camera Updates
+///////////////////////////////////////////////
+-(void)update:(CFTimeInterval)currentTime
+{
+    [character update:currentTime];
+    
+    CGVector camDistanceMoved = [camera update:currentTime character:character];
+    [sceneryManager update:currentTime camDelta:camDistanceMoved];
+    [camera update:currentTime character:character];
 }
 
 - (void) didFinishUpdate
@@ -166,15 +210,6 @@
     CGPoint cameraPositionInScene = [node.scene convertPoint:node.position fromNode:node.parent];
     node.parent.position = CGPointMake(node.parent.position.x - cameraPositionInScene.x,
                                        node.parent.position.y - cameraPositionInScene.y);
-}
-
-
--(void)update:(CFTimeInterval)currentTime
-{
-    CGVector camDistanceMoved = [camera update:currentTime character:character];
-    [sceneryManager update:currentTime camDelta:camDistanceMoved];
-    [character update:currentTime];
-    [camera update:currentTime character:character];
 }
 
 @end

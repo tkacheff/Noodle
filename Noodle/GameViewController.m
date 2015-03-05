@@ -7,8 +7,8 @@
 #define NOODLE_DEBUG
 
 #import "GameViewController.h"
-#import "FirstGameScene.h"
-#import "UserInputController.h"
+#import "InfiniteGameScene.h"
+#import "MainMenu.h"
 
 @implementation GameViewController
 
@@ -32,13 +32,13 @@
 #ifdef NOODLE_DEBUG
         skView.showsFPS = YES;
         skView.showsNodeCount = YES;
-  //      skView.showsPhysics = YES;
+        skView.showsPhysics = YES;
 #endif
+        mainMenu = [[MainMenu alloc] initWithView:skView];
         
         NSString *scenePath = [[NSBundle mainBundle] pathForResource:@"Levels/FirstGameLevel" ofType:@"sks"];
-        FirstGameScene *scene = [FirstGameScene unarchiveFromFile:scenePath];
-        [scene setup];
-        
+        InfiniteGameScene *scene = [InfiniteGameScene unarchiveFromFile:scenePath];
+
         [skView presentScene:scene];
     }
 }

@@ -4,13 +4,13 @@
 //
 //
 
-#import <UIKit/UIKit.h>
 #import <SpriteKit/SpriteKit.h>
 
-@class UserInputController;
+@class MainMenu;
 
 @interface GameViewController : UIViewController
 {
+    MainMenu* mainMenu;
 }
 
 @end

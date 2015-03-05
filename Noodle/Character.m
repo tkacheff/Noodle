@@ -8,7 +8,6 @@
 #import "Character.h"
 
 #define START_DENSITY 5.0f
-
 #define MAX_TAP_DISTANCE 4.0f
 
 static const uint32_t characterCategory  = 0x1 << 0;  // 00000000000000000000000000000001
@@ -18,10 +17,10 @@ static const uint32_t characterCategory  = 0x1 << 0;  // 00000000000000000000000
 
 -(id)initWithSize:(CGSize)size
 {
-    if (self = [super initWithColor:[UIColor redColor] size:CGSizeMake(35, 35)])
+    if (self = [super initWithColor:[UIColor orangeColor] size:CGSizeMake(35, 35)])
     {
         self.position = CGPointMake(0, 0);
-        [self setColor:[UIColor colorWithRed:1 green:0 blue:0 alpha:0.5]];
+        
         self.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:self.frame.size];
         self.physicsBody.restitution = 0;
         self.physicsBody.density = START_DENSITY;
@@ -31,8 +30,6 @@ static const uint32_t characterCategory  = 0x1 << 0;  // 00000000000000000000000
         self.physicsBody.contactTestBitMask = characterCategory;
         self.physicsBody.categoryBitMask = characterCategory;
         
-        self.userInteractionEnabled = true;
-        
         flingLine = [[SKSpriteNode alloc] initWithColor:[UIColor blackColor] size:CGSizeMake(0, 0)];
         [flingLine setZPosition:-1];
         [flingLine setAnchorPoint:CGPointMake(0.5,0)];
@@ -40,9 +37,10 @@ static const uint32_t characterCategory  = 0x1 << 0;  // 00000000000000000000000
         maxFlingImpulseConstant = 50.0f;
         lastTimeUpdate = 0;
         
-        ceilingHangTime = 0.6f;
+        ceilingHangTime = 0.3f;
         inAirFlingRemainCount = 0;
         touchingPlatform = NO;
+        touchingOnSide = NO;
         
         isTap = false;
     }
@@ -52,17 +50,22 @@ static const uint32_t characterCategory  = 0x1 << 0;  // 00000000000000000000000
 
 -(void) update:(CFTimeInterval)currentTime
 {
+    if (self.scene.view.paused)
+    {
+        flingTouch = nil;
+        lastTimeUpdate = 0;
+        return;
+    }
+    
     if (lastTimeUpdate == 0)
     {
         lastTimeUpdate = currentTime;
         return;
     }
     
+    
     lastTimeUpdate = currentTime;
 }
-
-
-
 
 
 /////////////////////////////////////////////////
@@ -153,7 +156,7 @@ static const uint32_t characterCategory  = 0x1 << 0;  // 00000000000000000000000
 {
     self.physicsBody.velocity = CGVectorMake(0.0f, 0.0f);
     
-    [self doFling:CGVectorMake(0.0f, -(maxFlingImpulseConstant * 1.5f) * self.physicsBody.density)];
+    [self doFling:CGVectorMake(0.0f, -(maxFlingImpulseConstant) * self.physicsBody.density)];
 }
 
 
@@ -195,7 +198,7 @@ static const uint32_t characterCategory  = 0x1 << 0;  // 00000000000000000000000
     CGVector impulse = [self getCurrentImpulse:newPos initPos:initPos];
     
     float newRotation = fmod(M_PI * 2.f - atan2(impulse.dx, impulse.dy) + M_PI_2, M_PI * 2.f);
-    [flingLine setZRotation:(newRotation - M_PI/2.0f)];
+    [flingLine setZRotation:(-self.zRotation + newRotation - M_PI/2.0f)];
     float length = sqrt(impulse.dx * impulse.dx + impulse.dy * impulse.dy) * 0.4f;
     
     if (length <= self.frame.size.width/2.0f)
@@ -247,17 +250,18 @@ static const uint32_t characterCategory  = 0x1 << 0;  // 00000000000000000000000
     {
         self.physicsBody.affectedByGravity = YES;
         touchingPlatform = NO;
+        touchingOnSide = NO;
         inAirFlingRemainCount = 1;
     }
 }
 
 -(void) startTouchBody:(SKPhysicsBody*) otherBody contactNormal:(CGVector)contactNormal
 {
-   /* if (!touchingPlatform && fabs(contactNormal.dx) >= 0.8 && self.physicsBody.velocity.dy > 0.0f)
+    if (!touchingOnSide && fabs(contactNormal.dx) >= 0.5)
     {
-        inAirFlingRemainCount = 0;
-        [self doFling:CGVectorMake(0, 10.0f * self.physicsBody.density + (self.physicsBody.velocity.dy/7.0f))];
-    }*/
+        [self.physicsBody applyImpulse:CGVectorMake(0, -self.scene.physicsWorld.gravity.dy)];
+        touchingOnSide = YES;
+    }
     
     if (contactNormal.dy <= -0.8)
     {
@@ -265,6 +269,13 @@ static const uint32_t characterCategory  = 0x1 << 0;  // 00000000000000000000000
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(ceilingHangTime * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             self.physicsBody.affectedByGravity = YES;
         });
+    }
+    else if(contactNormal.dy >= 0.8)
+    {
+        if (!touchingPlatform)
+        {
+            self.physicsBody.velocity = CGVectorMake(0, self.physicsBody.velocity.dy);
+        }
     }
     
     touchingPlatform = YES;

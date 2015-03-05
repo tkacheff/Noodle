@@ -30,6 +30,7 @@
 -(void) pauseButtonTapped
 {
     parentView.scene.view.paused = !parentView.scene.view.paused;
+    [parentView.scene update:0];
 }
 
 @end
