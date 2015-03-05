@@ -101,9 +101,21 @@
     [background setZPosition:1];
     [sceneryManager addChild:background];
     
+    //Create the shader from a shader-file
+    SKShader* shader = [SKShader shaderWithFileNamed:@"Shaders/TestShader.fsh"];
+    //Set vairiables that are used in the shader script
+    shader.uniforms = @[
+                        [SKUniform uniformWithName:@"size" floatVector3:GLKVector3Make(self.frame.size.width, self.frame.size.height, 0)],
+                        ];
+    //add the shader to the sprite
+    background.shader = shader;
+    
     character = [[Character alloc] initWithSize:self.size];
     character.zPosition = 5;
     [world addChild:character];
+    
+    [self registerAppTransitionObservers];
+    [self pauseGame];
 }
 
 -(void)didMoveToView:(SKView *)view
@@ -111,11 +123,54 @@
     ui = [[InGameUI alloc] initWithView:self.view];
     
     [self setup];
-    dispatch_async(dispatch_get_main_queue(), ^{
-        self.scene.view.paused = YES;
-    });
 }
 
+
+// Pause/State Handling
+-(void)pauseGame
+{
+    isPaused = YES;
+    self.scene.paused = YES;
+}
+-(void)unpauseGame
+{
+    isPaused = NO;
+    self.scene.paused = NO;
+}
+
+-(void) applicationDidEnterBackground
+{
+    [self pauseGame];
+}
+-(void)applicationWillEnterForeground
+{
+    [self unpauseGame];
+}
+-(void)applicationWillResignActive
+{
+    if (!isPaused)
+    {
+        [self pauseGame];
+    }
+}
+-(void)registerAppTransitionObservers
+{
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(applicationWillResignActive)
+                                                 name:UIApplicationWillResignActiveNotification
+                                               object:NULL];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(applicationDidEnterBackground)
+                                                 name:UIApplicationDidEnterBackgroundNotification
+                                               object:NULL];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(applicationWillEnterForeground)
+                                                 name:UIApplicationWillEnterForegroundNotification
+                                               object:NULL];
+}
 
 
 //////////////////////////////////////////////////////////
@@ -176,16 +231,6 @@
     }
 }
 
--(void) setPaused:(BOOL)paused
-{
-    [super setPaused:paused];
-    
-    if (self.paused)
-    {
-        [self update:0];
-    }
-}
-
 
 //////////////////////////////////////////////////////////
 //
@@ -193,6 +238,11 @@
 ///////////////////////////////////////////////
 -(void)update:(CFTimeInterval)currentTime
 {
+    if (isPaused)
+    {
+        return;
+    }
+    
     [character update:currentTime];
     
     CGVector camDistanceMoved = [camera update:currentTime character:character];
@@ -202,6 +252,11 @@
 
 - (void) didFinishUpdate
 {
+    if (isPaused)
+    {
+        return;
+    }
+    
     [self centerOnNode:camera];
 }
 

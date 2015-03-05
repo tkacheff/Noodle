@@ -19,9 +19,13 @@
     InGameUI* ui;
     
     SKNode* world;
+    
+    BOOL isPaused;
 }
 
 + (instancetype)unarchiveFromFile:(NSString *)file;
 - (void) setup;
 
+-(void)pauseGame;
+-(void)unpauseGame;
 @end

@@ -34,10 +34,10 @@ static const uint32_t characterCategory  = 0x1 << 0;  // 00000000000000000000000
         [flingLine setZPosition:-1];
         [flingLine setAnchorPoint:CGPointMake(0.5,0)];
         
-        maxFlingImpulseConstant = 50.0f;
+        maxFlingImpulseConstant = 30.0f;
         lastTimeUpdate = 0;
         
-        ceilingHangTime = 0.3f;
+        ceilingHangTime = 0.1f;
         inAirFlingRemainCount = 0;
         touchingPlatform = NO;
         touchingOnSide = NO;
@@ -221,6 +221,11 @@ static const uint32_t characterCategory  = 0x1 << 0;  // 00000000000000000000000
     if (inAirFlingRemainCount > 0)
     {
         inAirFlingRemainCount--;
+    }
+    
+    if (inAirFlingRemainCount <=0)
+    {
+        self.physicsBody.velocity = CGVectorMake(0, 0);
     }
     
     [self cancelFlingLine];

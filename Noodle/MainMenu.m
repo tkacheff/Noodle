@@ -7,6 +7,7 @@
 //
 
 #import "MainMenu.h"
+#import "InfiniteGameScene.h"
 
 @implementation MainMenu
 
@@ -29,7 +30,12 @@
 
 -(void) startGameTapped
 {
-    parentView.paused = false;
+    if ([parentView.scene isKindOfClass:[InfiniteGameScene class]])
+    {
+        InfiniteGameScene* gameScene = (InfiniteGameScene*)parentView.scene;
+        [gameScene unpauseGame];
+    }
+    
     [self hide];
 }
 
