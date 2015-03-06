@@ -7,7 +7,7 @@
 //
 
 #import "InGameUI.h"
-#import "InfiniteGameScene.h"
+#import "SceneBase.h"
 
 #define PAUSE_BUTTON_SIZE 32.0f
 
@@ -30,10 +30,13 @@
 
 -(void) pauseButtonTapped
 {
-    if ([parentView.scene isKindOfClass:[InfiniteGameScene class]])
+    if ([parentView.scene isKindOfClass:[SceneBase class]])
     {
-        InfiniteGameScene* gameScene = (InfiniteGameScene*)parentView.scene;
-        [gameScene pauseGame];
+        SceneBase* gameScene = (SceneBase*)parentView.scene;
+        if (![gameScene getPaused])
+        {
+            [[NSNotificationCenter defaultCenter] postNotificationName:PAUSE_GAME_NOTIFICATION object:nil];
+        }
     }
 }
 

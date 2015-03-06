@@ -4,8 +4,6 @@
 //
 //
 
-#define NOODLE_DEBUG
-
 #import "GameViewController.h"
 #import "InfiniteGameScene.h"
 #import "MainMenu.h"
@@ -16,6 +14,10 @@
 {
     if (self = [super initWithCoder:aDecoder])
     {
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(gameDidPause)
+                                                     name:PAUSE_GAME_NOTIFICATION
+                                                   object:NULL];
     }
     
     return self;
@@ -41,6 +43,11 @@
 
         [skView presentScene:scene];
     }
+}
+
+-(void) gameDidPause
+{
+    [mainMenu show];
 }
 
 - (BOOL)prefersStatusBarHidden

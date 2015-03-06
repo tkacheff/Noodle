@@ -12,6 +12,7 @@
 {
     SKView* parentView;
     UIButton* resumeGameButton;
+    UIButton* settingsButton;
 }
 
 -(id) initWithView:(SKView*) view;

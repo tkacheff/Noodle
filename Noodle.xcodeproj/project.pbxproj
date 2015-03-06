@@ -11,8 +11,11 @@
 		66DF6A1917FB871B00CC9BD1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66DF6A1817FB871B00CC9BD1 /* CoreGraphics.framework */; };
 		66DF6A1B17FB871B00CC9BD1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66DF6A1A17FB871B00CC9BD1 /* UIKit.framework */; };
 		66DF6A1D17FB871B00CC9BD1 /* SpriteKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66DF6A1C17FB871B00CC9BD1 /* SpriteKit.framework */; };
+		940DFE891AA8C8F200BA22EA /* SceneBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 940DFE881AA8C8F200BA22EA /* SceneBase.m */; };
 		9419345E1AA30D7D00DDEA00 /* InGameUI.m in Sources */ = {isa = PBXBuildFile; fileRef = 9419345D1AA30D7D00DDEA00 /* InGameUI.m */; };
 		942464B61AA61DB80031E7C8 /* MainMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 942464B51AA61DB80031E7C8 /* MainMenu.m */; };
+		943E81281AA93B010056C6A2 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 943E81271AA93B010056C6A2 /* GameKit.framework */; };
+		943E812A1AA93B0C0056C6A2 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 943E81291AA93B0C0056C6A2 /* StoreKit.framework */; };
 		944236FB1A95CEBA0006C68B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 94BF03951A95C979002688C6 /* Main.storyboard */; };
 		948FDDF11A95C47200C60756 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 948FDDEE1A95C47200C60756 /* main.m */; };
 		9490CE8B1A9B909400DA7382 /* Camera.m in Sources */ = {isa = PBXBuildFile; fileRef = 9490CE8A1A9B909400DA7382 /* Camera.m */; };
@@ -40,10 +43,15 @@
 		66DF6A1817FB871B00CC9BD1 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		66DF6A1A17FB871B00CC9BD1 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		66DF6A1C17FB871B00CC9BD1 /* SpriteKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SpriteKit.framework; path = System/Library/Frameworks/SpriteKit.framework; sourceTree = SDKROOT; };
+		940DFE871AA8C8F200BA22EA /* SceneBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SceneBase.h; sourceTree = "<group>"; };
+		940DFE881AA8C8F200BA22EA /* SceneBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SceneBase.m; sourceTree = "<group>"; };
 		9419345C1AA30D7D00DDEA00 /* InGameUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InGameUI.h; sourceTree = "<group>"; };
 		9419345D1AA30D7D00DDEA00 /* InGameUI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InGameUI.m; sourceTree = "<group>"; };
 		942464B41AA61DB80031E7C8 /* MainMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainMenu.h; sourceTree = "<group>"; };
 		942464B51AA61DB80031E7C8 /* MainMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainMenu.m; sourceTree = "<group>"; };
+		943E81271AA93B010056C6A2 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
+		943E81291AA93B0C0056C6A2 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		943E812B1AA93B170056C6A2 /* Noodle.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Noodle.entitlements; sourceTree = "<group>"; };
 		948FDDEE1A95C47200C60756 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Noodle/main.m; sourceTree = SOURCE_ROOT; };
 		948FDDEF1A95C47200C60756 /* Noodle-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "Noodle-Info.plist"; path = "Noodle/Noodle-Info.plist"; sourceTree = SOURCE_ROOT; };
 		948FDDF01A95C47200C60756 /* Noodle-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Noodle-Prefix.pch"; path = "Noodle/Noodle-Prefix.pch"; sourceTree = SOURCE_ROOT; };
@@ -82,7 +90,9 @@
 				66DF6A1917FB871B00CC9BD1 /* CoreGraphics.framework in Frameworks */,
 				66DF6A1B17FB871B00CC9BD1 /* UIKit.framework in Frameworks */,
 				66DF6A1D17FB871B00CC9BD1 /* SpriteKit.framework in Frameworks */,
+				943E812A1AA93B0C0056C6A2 /* StoreKit.framework in Frameworks */,
 				66DF6A1717FB871B00CC9BD1 /* Foundation.framework in Frameworks */,
+				943E81281AA93B010056C6A2 /* GameKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -109,6 +119,8 @@
 		66DF6A1517FB871B00CC9BD1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				943E81291AA93B0C0056C6A2 /* StoreKit.framework */,
+				943E81271AA93B010056C6A2 /* GameKit.framework */,
 				66DF6A1617FB871B00CC9BD1 /* Foundation.framework */,
 				66DF6A1817FB871B00CC9BD1 /* CoreGraphics.framework */,
 				66DF6A1A17FB871B00CC9BD1 /* UIKit.framework */,
@@ -120,6 +132,7 @@
 		66DF6A1E17FB871B00CC9BD1 /* Noodle */ = {
 			isa = PBXGroup;
 			children = (
+				943E812B1AA93B170056C6A2 /* Noodle.entitlements */,
 				9419345A1AA30D5700DDEA00 /* UI */,
 				94A75E781A9CEB3000057C48 /* User Input */,
 				944236FA1A95CC000006C68B /* iOS Stuff */,
@@ -191,8 +204,8 @@
 			children = (
 				94BF03A01A95C99C002688C6 /* InfiniteGameScene.h */,
 				94BF03A11A95C99C002688C6 /* InfiniteGameScene.m */,
-				9490CE8D1A9B98F500DA7382 /* SceneryManager.h */,
-				9490CE8E1A9B98F500DA7382 /* SceneryManager.m */,
+				940DFE871AA8C8F200BA22EA /* SceneBase.h */,
+				940DFE881AA8C8F200BA22EA /* SceneBase.m */,
 			);
 			name = Scenes;
 			sourceTree = "<group>";
@@ -220,6 +233,8 @@
 		94DC8CE21A92D80E00DC4DD8 /* Game Entities */ = {
 			isa = PBXGroup;
 			children = (
+				9490CE8D1A9B98F500DA7382 /* SceneryManager.h */,
+				9490CE8E1A9B98F500DA7382 /* SceneryManager.m */,
 				94BF03901A95C958002688C6 /* Character.h */,
 				94BF03911A95C958002688C6 /* Character.m */,
 				9490CE8C1A9B90AB00DA7382 /* Camera.h */,
@@ -259,6 +274,17 @@
 				TargetAttributes = {
 					66DF6A1217FB871B00CC9BD1 = {
 						DevelopmentTeam = R479PH3KA9;
+						SystemCapabilities = {
+							com.apple.GameCenter = {
+								enabled = 1;
+							};
+							com.apple.InAppPurchase = {
+								enabled = 1;
+							};
+							com.apple.iCloud = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -310,6 +336,7 @@
 				9419345E1AA30D7D00DDEA00 /* InGameUI.m in Sources */,
 				94BF039D1A95C98C002688C6 /* GameViewController.m in Sources */,
 				94BF03921A95C958002688C6 /* Character.m in Sources */,
+				940DFE891AA8C8F200BA22EA /* SceneBase.m in Sources */,
 				94A75E7B1A9CEB8000057C48 /* UserInputController.m in Sources */,
 				942464B61AA61DB80031E7C8 /* MainMenu.m in Sources */,
 				94BF039C1A95C98C002688C6 /* AppDelegate.m in Sources */,
@@ -416,10 +443,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = Noodle/Noodle.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Noodle/Noodle-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+					NOODLE_DEBUG,
+				);
 				INFOPLIST_FILE = "Noodle/Noodle-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -435,6 +468,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = Noodle/Noodle.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
