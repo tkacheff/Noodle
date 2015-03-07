@@ -31,17 +31,22 @@
     [background setSize:CGSizeMake(self.size.width, world.scene.size.height * 20.0f)];
     [background setZPosition:1];
     
-    /*SKShader* shader = [SKShader shaderWithFileNamed:@"Shaders/TestShader.fsh"];
-    shader.uniforms = @[[SKUniform uniformWithName:@"u_texture" floatVector2:GLKVector2Make(0,0)]];
-    background.shader = shader;*/
-    
     [sceneryManager addChild:background];
     
     character = [[Character alloc] initWithSize:self.size];
     character.zPosition = 5;
     [world addChild:character];
+
+    CIFilter *blur = [CIFilter filterWithName:@"CIGaussianBlur" keysAndValues:@"inputRadius", @1.0f, nil];
+    [self setFilter:blur];
     
-    [self pauseGame];
+    /*
+    SKShader* shader = [SKShader shaderWithFileNamed:@"Shaders/TestShader.fsh"];
+    self.shader  = shader;*/
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self pauseGame];
+    });
 }
 
 
@@ -108,27 +113,23 @@
 //
 // Game Logic/Camera Updates
 ///////////////////////////////////////////////
+-(void) pausedUpdate
+{
+    [character update:0];
+    CGVector camDistanceMoved = [camera update:0 character:character];
+    [sceneryManager update:0 camDelta:camDistanceMoved];
+}
+
 -(void)update:(CFTimeInterval)currentTime
 {
-    if (isPaused)
-    {
-        return;
-    }
-    
     [character update:currentTime];
     
     CGVector camDistanceMoved = [camera update:currentTime character:character];
     [sceneryManager update:currentTime camDelta:camDistanceMoved];
-    [camera update:currentTime character:character];
 }
 
 - (void) didFinishUpdate
 {
-    if (isPaused)
-    {
-        return;
-    }
-    
     [self centerOnNode:camera];
 }
 

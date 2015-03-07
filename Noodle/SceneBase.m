@@ -82,12 +82,12 @@
 {
     self.scaleMode = SKSceneScaleModeAspectFill;
     self.physicsWorld.gravity = CGVectorMake(0.0, -6.0);
-    
+  
     world = [self childNodeWithName:@"World"];
     world.physicsBody = [SKPhysicsBody bodyWithEdgeLoopFromRect:CGRectMake(-self.frame.size.width/2.0f, -self.frame.size.height/2.0f, self.frame.size.width, self.frame.size.height * 2000.0f)];
     world.physicsBody.restitution = 0.0f;
     world.physicsBody.friction = 0.0f;
-    
+
     sceneryManager = [[SceneryManager alloc] init];
     [self addChild:sceneryManager];
     
@@ -97,7 +97,6 @@
 -(void)didMoveToView:(SKView *)view
 {
     ui = [[InGameUI alloc] initWithView:self.view];
-    
     [self setup];
 }
 
@@ -106,12 +105,17 @@
 //
 // Pause/State Handling
 ////////////////////////////////////////////////////////////
+
+-(void) pausedUpdate
+{
+    // override these in inherited classes for update when game pauses
+}
+
 -(void)pauseGame
 {
-    dispatch_async(dispatch_get_main_queue(), ^{
-        isPaused = YES;
-        self.scene.view.paused = YES;
-    });
+    isPaused = YES;
+    self.scene.view.paused = YES;
+    [self pausedUpdate];
 }
 -(void)unpauseGame
 {

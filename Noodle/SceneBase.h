@@ -32,4 +32,6 @@
 -(void)unpauseGame;
 -(BOOL)getPaused;
 
+-(void) pausedUpdate;
+
 @end
