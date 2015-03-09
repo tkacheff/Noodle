@@ -14,7 +14,7 @@
     
     float maxFlingImpulseConstant;
     
-    SKSpriteNode* flingLine;
+    NSArray* flingLineNodes;
     
     SKPhysicsBody* sideTouchBody;
     BOOL touchingPlatform;
@@ -27,7 +27,7 @@
 }
 
 
--(id)initWithSize:(CGSize)size;
+-(id)initWithSize:(CGSize)size position:(CGPoint) position;
 
 -(void) update:(CFTimeInterval)currentTime;
 

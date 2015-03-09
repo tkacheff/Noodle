@@ -28,7 +28,7 @@
             SKSpriteNode* spriteNode = (SKSpriteNode*)descendant;
             spriteNode.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:spriteNode.frame.size];
             spriteNode.physicsBody.dynamic = NO;
-            spriteNode.physicsBody.allowsRotation = NO;
+            //spriteNode.physicsBody.allowsRotation = NO;
             spriteNode.physicsBody.restitution = 0.0f;
             spriteNode.physicsBody.affectedByGravity = NO;
         }

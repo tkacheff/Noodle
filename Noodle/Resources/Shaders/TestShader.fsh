@@ -1,22 +1,13 @@
-void main( void )
+void main(void)
 {
-    float time = u_time * .5;
-    vec2 sp = gl_FragCoord.xy / size.xy;
-    vec2 p = sp * 6.0 - 20.0;
-    vec2 i = p;
-    float c = 1.0;
-    float inten = .05;
+    float currTime = u_time;
     
-    for (int n = 0; n < 5; n++)
-    {
-        float t = time * (1.0 - (3.5 / float(n+1)));
-        i = p + vec2(cos(t - i.x) + sin(t + i.y), sin(t - i.y) + cos(t + i.x));
-        c += 1.0/length(vec2(p.x / (sin(i.x+t)/inten),p.y / (cos(i.y+t)/inten)));
-    }
+    vec2 uv = v_tex_coord;
+    vec2 circleCenter = vec2(0.5, 0.5);
+    vec3 circleColor = vec3(0.8, 0.5, 0.7);
+    vec3 posColor = vec3(uv, 0.5+0.5 * sin(currTime)) * circleColor;
     
-    c /= float(5);
-    c = 1.55-sqrt(c);
-    vec3 colour = vec3(pow(abs(c), 15.0));
-    
-    gl_FragColor = vec4(clamp(colour + vec3(0.0, 0.17, 0.3), 0.0, .5), 0.3);
+    float illu = pow(1. - distance(uv, circleCenter), 4.) * 1.2;
+    illu *= (2. + abs(0.4 + cos(currTime * -20. + 50. * distance(uv, circleCenter))/1.5));
+    gl_FragColor = vec4(posColor * illu * 2., illu * 2.);
 }

@@ -33,7 +33,16 @@
     
     [sceneryManager addChild:background];
     
-    character = [[Character alloc] initWithSize:self.size];
+    SKNode* spawnPoint = [self childNodeWithName:@"World//SpawnPoint"];
+    if (spawnPoint)
+    {
+        character = [[Character alloc] initWithSize:self.size position:spawnPoint.position];
+    }
+    else
+    {
+        character = [[Character alloc] initWithSize:self.size position:CGPointMake(0, 0)];
+    }
+    
     character.zPosition = 5;
     [world addChild:character];
     

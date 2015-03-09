@@ -10,17 +10,19 @@
 #define START_DENSITY 5.0f
 #define MAX_TAP_DISTANCE 4.0f
 #define MAX_FLING_COUNT 2
+#define SLOWDOWN_SPEED 0.25f
+#define NUM_OF_PROJECTIONS 17
 
 static const uint32_t characterCategory  = 0x1 << 0;  // 00000000000000000000000000000001
 
 @implementation Character
 
 
--(id)initWithSize:(CGSize)size
+-(id)initWithSize:(CGSize)size position:(CGPoint) position
 {
-    if (self = [super initWithColor:[UIColor orangeColor] size:CGSizeMake(35, 35)])
+    if (self = [super initWithColor:[UIColor orangeColor] size:CGSizeMake(24, 24)])
     {
-        self.position = CGPointMake(0, 0);
+        self.position = position;
         
         self.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:self.frame.size];
         self.physicsBody.restitution = 0;
@@ -32,11 +34,7 @@ static const uint32_t characterCategory  = 0x1 << 0;  // 00000000000000000000000
         self.physicsBody.contactTestBitMask = characterCategory;
         self.physicsBody.categoryBitMask = characterCategory;
         
-        flingLine = [[SKSpriteNode alloc] initWithColor:[UIColor blackColor] size:CGSizeMake(0, 0)];
-        [flingLine setZPosition:-1];
-        [flingLine setAnchorPoint:CGPointMake(0.5,0)];
-        
-        maxFlingImpulseConstant = 32.0f;
+        maxFlingImpulseConstant = 12.0f;
         lastTimeUpdate = 0;
         
         ceilingHangTime = 0.1f;
@@ -45,6 +43,15 @@ static const uint32_t characterCategory  = 0x1 << 0;  // 00000000000000000000000
         sideTouchBody = nil;
         
         isTap = false;
+        
+        NSMutableArray* flingNodes = [[NSMutableArray alloc] init];
+        for (int i = 0; i < NUM_OF_PROJECTIONS; ++i)
+        {
+            SKSpriteNode* sprite = [SKSpriteNode spriteNodeWithColor:[UIColor redColor] size:CGSizeMake(5, 5)];
+            sprite.zPosition = -1;
+            [flingNodes addObject:sprite];
+        }
+        flingLineNodes = [[NSArray alloc] initWithArray:flingNodes];
     }
     
     return self;
@@ -165,6 +172,28 @@ static const uint32_t characterCategory  = 0x1 << 0;  // 00000000000000000000000
 /////////////////////////////////////////////////
 // Fling Handling
 /////////////////////////////////////////////
+
+-(CGPoint) getTrajectoryPointWithInitialPosition:(CGPoint) initialPosition andImpulse:(CGVector) impulse andSteps: (CGFloat)n
+{
+    // Put data into correct units
+    CGFloat t = 1.0 / 60.0;
+    
+    float biggerMass = self.physicsBody.mass * 20.0f; // magic number, idk why but it works
+    CGVector initialVelocity = CGVectorMake(impulse.dx/biggerMass, impulse.dy/biggerMass);
+    
+    // m/s
+    CGVector stepVelocity = CGVectorMake(t * initialVelocity.dx, t * initialVelocity.dy);
+    
+    // m/s^2
+    CGVector stepGravity = CGVectorMake(t * t * self.scene.physicsWorld.gravity.dx, t * t * self.scene.physicsWorld.gravity.dy);
+    
+    initialPosition = CGPointMake(initialPosition.x + n * stepVelocity.dx,
+                                   initialPosition.y + n * stepVelocity.dy + 0.5 * (n*n+n) * stepGravity.dy);
+    
+    return CGPointMake(initialPosition.x + n * stepVelocity.dx,
+                        initialPosition.y + n * stepVelocity.dy + 0.5 * (n*n) * stepGravity.dy);
+}
+
 -(CGVector) getCurrentImpulse:(CGPoint) newPos initPos:(CGPoint) initPos
 {
     CGVector impulse = CGVectorMake( (newPos.x - initPos.x) * self.physicsBody.density, (newPos.y - initPos.y) * self.physicsBody.density);
@@ -185,18 +214,16 @@ static const uint32_t characterCategory  = 0x1 << 0;  // 00000000000000000000000
 {
     if (touchingPlatform || flingRemainCount > 0)
     {
-        [self addChild:flingLine];
-        
         if (!touchingPlatform)
         {
-            self.scene.physicsWorld.speed = 0.5;
+            self.scene.physicsWorld.speed = SLOWDOWN_SPEED;
         }
     }
 }
 
 -(void) updateFlingLine:(CGPoint) newPos initPos:(CGPoint) initPos
 {
-    if (!flingLine.parent || flingRemainCount < 0)
+    if (flingRemainCount < 0)
     {
         [self cancelFlingLine];
         return;
@@ -204,49 +231,49 @@ static const uint32_t characterCategory  = 0x1 << 0;  // 00000000000000000000000
     
     CGVector impulse = [self getCurrentImpulse:newPos initPos:initPos];
     
-    float newRotation = fmod(M_PI * 2.f - atan2(impulse.dx, impulse.dy) + M_PI_2, M_PI * 2.f);
-    [flingLine setZRotation:(-self.zRotation + newRotation - M_PI/2.0f)];
-    float length = sqrt(impulse.dx * impulse.dx + impulse.dy * impulse.dy) * 0.4f;
-    
-    if (length <= self.frame.size.width/2.0f)
+    for (int i = 0; i < NUM_OF_PROJECTIONS; ++i)
     {
-        [flingLine setSize:CGSizeMake(0,0)];
-    }
-    else
-    {
-        [flingLine setSize:CGSizeMake(4, length)];
+        CGPoint firstPoint = [self getTrajectoryPointWithInitialPosition:CGPointMake(0, 0) andImpulse:impulse andSteps:i * NUM_OF_PROJECTIONS];
+        SKSpriteNode* flingSprite = (SKSpriteNode*) [flingLineNodes objectAtIndex:i];
+        flingSprite.position = firstPoint;
+        [flingSprite setColor:[UIColor colorWithRed:1 green:0 blue:0 alpha:(1.0f - (float)i/NUM_OF_PROJECTIONS)]];
+        if (flingSprite.parent == nil)
+        {
+            [self addChild:flingSprite];
+        }
     }
 }
 
 -(void) finishFlingLine:(CGPoint) newPos initPos:(CGPoint) initPos
 {
-    if (!flingLine.parent || flingRemainCount < 0)
+    if (flingRemainCount < 0)
     {
         return;
     }
     
     flingRemainCount--;
     
-    if (flingRemainCount <= 0)
-    {
-        self.physicsBody.velocity = CGVectorMake(0, 0);
-    }
-    
     [self cancelFlingLine];
+    
     [self doFling:[self getCurrentImpulse:newPos initPos:initPos]];
 }
 
 -(void) doFling:(CGVector) impulse
 {
+    self.physicsBody.velocity = CGVectorMake(0, 0);
     self.physicsBody.affectedByGravity = YES;
     [self.physicsBody applyImpulse:impulse];
 }
 
 -(void) cancelFlingLine
 {
-    [flingLine removeFromParent];
-    [flingLine setSize:CGSizeMake(0, 0)];
     self.scene.physicsWorld.speed = 1.0;
+    
+    for (int i = 0; i < NUM_OF_PROJECTIONS; ++i)
+    {
+        SKSpriteNode* sprite = (SKSpriteNode*) [flingLineNodes objectAtIndex:i];
+        [sprite removeFromParent];
+    }
 }
 
 
