@@ -16,9 +16,9 @@
     
     SKSpriteNode* flingLine;
     
-    BOOL touchingOnSide;
+    SKPhysicsBody* sideTouchBody;
     BOOL touchingPlatform;
-    int inAirFlingRemainCount;
+    int flingRemainCount;
     float ceilingHangTime;
     
     bool isTap;

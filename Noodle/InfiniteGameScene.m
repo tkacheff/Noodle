@@ -117,9 +117,7 @@
 -(void)update:(CFTimeInterval)currentTime
 {
     [character update:currentTime];
-    
-    NSLog(@"Speed is %f",self.scene.physicsWorld.speed);
-    
+
     CGVector camDistanceMoved = [camera update:currentTime character:character];
     [sceneryManager update:currentTime camDelta:camDistanceMoved];
 }

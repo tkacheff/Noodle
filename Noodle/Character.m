@@ -9,6 +9,7 @@
 
 #define START_DENSITY 5.0f
 #define MAX_TAP_DISTANCE 4.0f
+#define MAX_FLING_COUNT 2
 
 static const uint32_t characterCategory  = 0x1 << 0;  // 00000000000000000000000000000001
 
@@ -39,9 +40,9 @@ static const uint32_t characterCategory  = 0x1 << 0;  // 00000000000000000000000
         lastTimeUpdate = 0;
         
         ceilingHangTime = 0.1f;
-        inAirFlingRemainCount = 0;
+        flingRemainCount = MAX_FLING_COUNT;
         touchingPlatform = NO;
-        touchingOnSide = NO;
+        sideTouchBody = nil;
         
         isTap = false;
     }
@@ -182,7 +183,7 @@ static const uint32_t characterCategory  = 0x1 << 0;  // 00000000000000000000000
 
 -(void) startFlingLine
 {
-    if (touchingPlatform || inAirFlingRemainCount > 0)
+    if (touchingPlatform || flingRemainCount > 0)
     {
         [self addChild:flingLine];
         
@@ -195,7 +196,7 @@ static const uint32_t characterCategory  = 0x1 << 0;  // 00000000000000000000000
 
 -(void) updateFlingLine:(CGPoint) newPos initPos:(CGPoint) initPos
 {
-    if (!flingLine.parent)
+    if (!flingLine.parent || flingRemainCount < 0)
     {
         [self cancelFlingLine];
         return;
@@ -219,17 +220,14 @@ static const uint32_t characterCategory  = 0x1 << 0;  // 00000000000000000000000
 
 -(void) finishFlingLine:(CGPoint) newPos initPos:(CGPoint) initPos
 {
-    if (!flingLine.parent && inAirFlingRemainCount <= 0)
+    if (!flingLine.parent || flingRemainCount < 0)
     {
         return;
     }
     
-    if (inAirFlingRemainCount > 0)
-    {
-        inAirFlingRemainCount--;
-    }
+    flingRemainCount--;
     
-    if (inAirFlingRemainCount <= 0)
+    if (flingRemainCount <= 0)
     {
         self.physicsBody.velocity = CGVectorMake(0, 0);
     }
@@ -258,21 +256,33 @@ static const uint32_t characterCategory  = 0x1 << 0;  // 00000000000000000000000
 /////////////////////////////////////////////
 -(void) endTouchBody:(SKPhysicsBody*) otherBody contactNormal:(CGVector)contactNormal
 {
+    if (sideTouchBody == otherBody && fabs(contactNormal.dx) >= 0.5)
+    {
+        sideTouchBody = nil;
+        if (flingRemainCount > 0)
+        {
+            flingRemainCount--;
+        }
+    }
+    
     if (self.physicsBody.allContactedBodies.count <= 0)
     {
         self.physicsBody.affectedByGravity = YES;
         touchingPlatform = NO;
-        touchingOnSide = NO;
-        inAirFlingRemainCount = 1;
+        sideTouchBody = nil;
     }
 }
 
 -(void) startTouchBody:(SKPhysicsBody*) otherBody contactNormal:(CGVector)contactNormal
 {
-    if (!touchingOnSide && fabs(contactNormal.dx) >= 0.5)
+    if (sideTouchBody == nil && fabs(contactNormal.dx) >= 0.5)
     {
         [self.physicsBody applyImpulse:CGVectorMake(0, -self.scene.physicsWorld.gravity.dy)];
-        touchingOnSide = YES;
+        sideTouchBody = otherBody;
+        if (!touchingPlatform && flingRemainCount < MAX_FLING_COUNT)
+        {
+            flingRemainCount++;
+        }
     }
     
     if (contactNormal.dy <= -0.8)
@@ -289,6 +299,7 @@ static const uint32_t characterCategory  = 0x1 << 0;  // 00000000000000000000000
             self.physicsBody.velocity = CGVectorMake(0, self.physicsBody.velocity.dy);
             self.scene.physicsWorld.speed = 1.0;
         }
+        flingRemainCount = 2;
         touchingPlatform = YES;
     }
     
