@@ -24,6 +24,9 @@
             case CameraTypeFollowPlayer: speed = CGVectorMake(0.0f, 4.0f); break;
             default: speed = CGVectorMake(0.0f, 0.0f); break;
         }
+        
+        alpha = 0.15;
+        fSmoothY = self.position.y;
     }
     
     return self;
@@ -43,11 +46,16 @@
 
 -(void) followPlayerUpdate:(float) timeDelta character:(Character*) character
 {
-    float goalDeltaY = character.position.y - self.position.y;
+    const float goalDeltaY = character.position.y - self.position.y;
+    float ySpeed = speed.dy;
+    if (fabs(goalDeltaY) > screenSize.height/4.0f)
+    {
+        ySpeed *= fabs(goalDeltaY)/(screenSize.height/4.0f);
+    }
+    float amountToMove = goalDeltaY * ySpeed * timeDelta;
     
-    float amountToMove = goalDeltaY * speed.dy * timeDelta;
-    amountToMove /= 2.0f;
-    self.position = CGPointMake(self.position.x, self.position.y + amountToMove);
+    fSmoothY = fSmoothY * (1-alpha) + amountToMove * alpha;
+    self.position = CGPointMake(self.position.x, self.position.y + fSmoothY);
 }
 
 -(CGVector) update:(CFTimeInterval)currentTime character:(Character*) character

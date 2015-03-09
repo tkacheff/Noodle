@@ -26,6 +26,7 @@ static const uint32_t characterCategory  = 0x1 << 0;  // 00000000000000000000000
         self.physicsBody.density = START_DENSITY;
         self.physicsBody.allowsRotation = false;
         self.physicsBody.friction = 1.0;
+        self.physicsBody.linearDamping = 0.7f;
         
         self.physicsBody.contactTestBitMask = characterCategory;
         self.physicsBody.categoryBitMask = characterCategory;
@@ -34,7 +35,7 @@ static const uint32_t characterCategory  = 0x1 << 0;  // 00000000000000000000000
         [flingLine setZPosition:-1];
         [flingLine setAnchorPoint:CGPointMake(0.5,0)];
         
-        maxFlingImpulseConstant = 30.0f;
+        maxFlingImpulseConstant = 32.0f;
         lastTimeUpdate = 0;
         
         ceilingHangTime = 0.1f;
@@ -156,7 +157,7 @@ static const uint32_t characterCategory  = 0x1 << 0;  // 00000000000000000000000
 {
     self.physicsBody.velocity = CGVectorMake(0.0f, 0.0f);
     
-    [self doFling:CGVectorMake(0.0f, -(maxFlingImpulseConstant) * self.physicsBody.density)];
+    [self doFling:CGVectorMake(0.0f, -(maxFlingImpulseConstant * 2.0f) * self.physicsBody.density)];
 }
 
 
@@ -184,6 +185,11 @@ static const uint32_t characterCategory  = 0x1 << 0;  // 00000000000000000000000
     if (touchingPlatform || inAirFlingRemainCount > 0)
     {
         [self addChild:flingLine];
+        
+        if (!touchingPlatform)
+        {
+            self.scene.physicsWorld.speed = 0.5;
+        }
     }
 }
 
@@ -223,7 +229,7 @@ static const uint32_t characterCategory  = 0x1 << 0;  // 00000000000000000000000
         inAirFlingRemainCount--;
     }
     
-    if (inAirFlingRemainCount <=0)
+    if (inAirFlingRemainCount <= 0)
     {
         self.physicsBody.velocity = CGVectorMake(0, 0);
     }
@@ -242,6 +248,7 @@ static const uint32_t characterCategory  = 0x1 << 0;  // 00000000000000000000000
 {
     [flingLine removeFromParent];
     [flingLine setSize:CGSizeMake(0, 0)];
+    self.scene.physicsWorld.speed = 1.0;
 }
 
 
@@ -280,10 +287,11 @@ static const uint32_t characterCategory  = 0x1 << 0;  // 00000000000000000000000
         if (!touchingPlatform)
         {
             self.physicsBody.velocity = CGVectorMake(0, self.physicsBody.velocity.dy);
+            self.scene.physicsWorld.speed = 1.0;
         }
+        touchingPlatform = YES;
     }
     
-    touchingPlatform = YES;
 }
 
 

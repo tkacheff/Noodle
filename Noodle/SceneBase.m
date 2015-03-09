@@ -114,12 +114,14 @@
 -(void)pauseGame
 {
     isPaused = YES;
+    self.scene.paused = YES;
     self.scene.view.paused = YES;
     [self pausedUpdate];
 }
 -(void)unpauseGame
 {
     isPaused = NO;
+    self.scene.paused = NO;
     self.scene.view.paused = NO;
 }
 

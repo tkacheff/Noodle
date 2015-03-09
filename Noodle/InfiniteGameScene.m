@@ -36,13 +36,6 @@
     character = [[Character alloc] initWithSize:self.size];
     character.zPosition = 5;
     [world addChild:character];
-
-    CIFilter *blur = [CIFilter filterWithName:@"CIGaussianBlur" keysAndValues:@"inputRadius", @1.0f, nil];
-    [self setFilter:blur];
-    
-    /*
-    SKShader* shader = [SKShader shaderWithFileNamed:@"Shaders/TestShader.fsh"];
-    self.shader  = shader;*/
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [self pauseGame];
@@ -116,6 +109,7 @@
 -(void) pausedUpdate
 {
     [character update:0];
+    
     CGVector camDistanceMoved = [camera update:0 character:character];
     [sceneryManager update:0 camDelta:camDistanceMoved];
 }
@@ -123,6 +117,8 @@
 -(void)update:(CFTimeInterval)currentTime
 {
     [character update:currentTime];
+    
+    NSLog(@"Speed is %f",self.scene.physicsWorld.speed);
     
     CGVector camDistanceMoved = [camera update:currentTime character:character];
     [sceneryManager update:currentTime camDelta:camDistanceMoved];

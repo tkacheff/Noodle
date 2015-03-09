@@ -47,7 +47,9 @@
 
 -(void) gameDidPause
 {
-    [mainMenu show];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [mainMenu show];
+    });
 }
 
 - (BOOL)prefersStatusBarHidden

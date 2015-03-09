@@ -15,7 +15,7 @@
 
 -(void) update:(CFTimeInterval)currentTime camDelta:(CGVector) camDelta
 {
-    if (self.scene.view.paused)
+    if (currentTime == 0)
     {
         return;
     }

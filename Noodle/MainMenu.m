@@ -39,7 +39,9 @@
     if ([parentView.scene isKindOfClass:[SceneBase class]])
     {
         SceneBase* gameScene = (SceneBase*)parentView.scene;
-        [gameScene unpauseGame];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [gameScene unpauseGame];
+        });
     }
     
     [self hide];

@@ -22,6 +22,9 @@ typedef NS_ENUM(NSInteger, CameraType) {
     
     CGSize screenSize;
     CGVector speed;
+    
+    CGFloat alpha;
+    CGFloat fSmoothY;
 }
 
 -(id)initWithSize:(CGSize)size type:(CameraType) cameraType;
