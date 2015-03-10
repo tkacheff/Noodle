@@ -25,7 +25,7 @@
             default: speed = CGVectorMake(0.0f, 0.0f); break;
         }
         
-        alpha = 0.15;
+        alpha = 0.2;
         fSmoothY = self.position.y;
     }
     

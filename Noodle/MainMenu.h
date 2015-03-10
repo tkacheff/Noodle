@@ -8,14 +8,18 @@
 
 #import <SpriteKit/SpriteKit.h>
 
-@interface MainMenu : NSObject
+@class Settings;
+
+@interface MainMenu : UIView
 {
     SKView* parentView;
-    UIButton* resumeGameButton;
-    UIButton* settingsButton;
+    Settings* settings;
 }
 
--(id) initWithView:(SKView*) view;
+@property IBOutlet UIButton* resumeGameButton;
+@property IBOutlet UIButton* settingsButton;
+
+-(void) setupWithView:(SKView*) view;
 
 -(void) show;
 -(void) hide;

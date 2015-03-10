@@ -36,12 +36,16 @@
         skView.showsNodeCount = YES;
         skView.showsPhysics = YES;
 #endif
-        mainMenu = [[MainMenu alloc] initWithView:skView];
-        
         NSString *scenePath = [[NSBundle mainBundle] pathForResource:@"Levels/FirstGameLevel" ofType:@"sks"];
         InfiniteGameScene *scene = [InfiniteGameScene unarchiveFromFile:scenePath];
 
         [skView presentScene:scene];
+        
+        mainMenu = (MainMenu*)[[[NSBundle mainBundle] loadNibNamed:@"MainMenu" owner:self options:nil] firstObject];
+        if (mainMenu && [mainMenu isKindOfClass:[MainMenu class]])
+        {
+            [mainMenu setupWithView:skView];
+        }
     }
 }
 

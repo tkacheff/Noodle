@@ -8,78 +8,97 @@
 
 #import "MainMenu.h"
 #import "SceneBase.h"
+#import "Settings.h"
+
+@interface MainMenu ()
+-(IBAction)startGameTapped:(id)sender;
+-(IBAction)settingsButtonTapped:(id)sender;
+@end
 
 @implementation MainMenu
 
--(id) initWithView:(SKView*) view
+-(void) setupWithView:(SKView*) view
 {
-    if (self = [super init])
-    {
-        parentView = view;
-        
-        CGSize buttonSize = CGSizeMake(200, 64);
-        resumeGameButton = [[UIButton alloc] initWithFrame:CGRectMake(parentView.frame.size.width/2 - buttonSize.width/2, parentView.frame.size.height/2 - buttonSize.height, buttonSize.width, buttonSize.height)];
-        resumeGameButton.backgroundColor = [UIColor purpleColor];
-        [resumeGameButton setTitle:@"Start Game" forState:UIControlStateNormal];
-        [resumeGameButton addTarget:self action:@selector(startGameTapped) forControlEvents:UIControlEventTouchUpInside];
-        [parentView addSubview:resumeGameButton];
-        
-        settingsButton = [[UIButton alloc] initWithFrame:CGRectMake(parentView.frame.size.width/2 - buttonSize.width/2, resumeGameButton.frame.origin.y + buttonSize.height + 10, buttonSize.width, buttonSize.height)];
-        settingsButton.backgroundColor = [UIColor blueColor];
-        [settingsButton setTitle:@"Settings" forState:UIControlStateNormal];
-        [settingsButton addTarget:self action:@selector(settingsButtonTapped) forControlEvents:UIControlEventTouchUpInside];
-        [parentView addSubview:settingsButton];
-    }
-    
-    return self;
+    parentView = view;
+    [parentView addSubview:self];
 }
 
--(void) startGameTapped
+-(void) transitionResumeText:(UILabel*) label withString:(NSString*) string andTime:(float) time
 {
-    if ([parentView.scene isKindOfClass:[SceneBase class]])
-    {
-        SceneBase* gameScene = (SceneBase*)parentView.scene;
-        dispatch_async(dispatch_get_main_queue(), ^{
-            UILabel* label = [[UILabel alloc] initWithFrame:parentView.frame];
-            label.textAlignment = NSTextAlignmentCenter;
-            label.text = @"Resuming game in 3...";
-            [parentView addSubview:label];
-            [self hide];
+    CATransition *animation = [CATransition animation];
+    animation.duration = time/2.0f;
+    animation.type = kCATransitionPush;
+    animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn];
+    [label.layer addAnimation:animation forKey:@"changeTextTransition"];
+    label.text = string;
+}
+
+-(void) showResumeAnimation:(SceneBase*) gameScene
+{
+    const float timeForEachLabel = 0.7;
+    
+    UILabel* label = [[UILabel alloc] initWithFrame:parentView.frame];
+    label.textAlignment = NSTextAlignmentCenter;
+    
+    [parentView addSubview:label];
+    [self hide];
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self transitionResumeText:label withString:@"Resuming game in 3..." andTime:timeForEachLabel/2.0f];
+        
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(timeForEachLabel * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self transitionResumeText:label withString:@"Resuming game in 2..." andTime:timeForEachLabel/2.0f];
             
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                CATransition *animation = [CATransition animation];
-                animation.duration = 1.0;
-                animation.beginTime = CACurrentMediaTime();
-                animation.type = kCATransitionFade;
-                animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn];
-                [label.layer addAnimation:animation forKey:@"changeTextTransition"];
-                label.text = @"Resuming game in 2...";
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(timeForEachLabel * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [self transitionResumeText:label withString:@"Resuming game in 1..." andTime:timeForEachLabel/2.0f];
                 
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                    CATransition *animation2 = [CATransition animation];
-                    animation2.duration = 1.0;
-                    animation2.beginTime = CACurrentMediaTime();
-                    animation2.type = kCATransitionFade;
-                    animation2.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-                    [label.layer addAnimation:animation2 forKey:@"kCATransitionFade2"];
-                    label.text = @"Resuming game in 1...";
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(timeForEachLabel * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    [self transitionResumeText:label withString:@"" andTime:timeForEachLabel/2.0f];
                     
-                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(timeForEachLabel/2.0f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                         [label removeFromSuperview];
                         [gameScene unpauseGame];
                     });
                 });
             });
-            
-            /**/
-            // Change the text
         });
+    });
+
+}
+
+- (IBAction) startGameTapped:(id)sender
+{
+    if ([parentView.scene isKindOfClass:[SceneBase class]])
+    {
+        SceneBase* gameScene = (SceneBase*)parentView.scene;
+        if (gameScene)
+        {
+            [self showResumeAnimation:gameScene];
+        }
     }
 }
 
--(void) settingsButtonTapped
+-(IBAction)settingsButtonTapped:(id)sender
 {
-    //todo: open settings xib
+    if ([parentView.scene isKindOfClass:[SceneBase class]])
+    {
+        SceneBase* gameScene = (SceneBase*)parentView.scene;
+        if (gameScene)
+        {
+            if (!settings)
+            {
+                settings = [[[NSBundle mainBundle] loadNibNamed:@"Settings" owner:self options:nil] firstObject];
+                if (settings && [settings isKindOfClass:[Settings class]])
+                {
+                    [self addSubview:settings];
+                }
+            }
+            else
+            {
+                [self addSubview:settings];
+            }
+        }
+    }
 }
 
 -(void) show
@@ -90,14 +109,12 @@
         [gameScene pauseGame];
     }
     
-    resumeGameButton.hidden = NO;
-    settingsButton.hidden = NO;
+    self.hidden = NO;
 }
 
 -(void) hide
 {
-    resumeGameButton.hidden = YES;
-    settingsButton.hidden = YES;
+    self.hidden = YES;
 }
 
 @end
