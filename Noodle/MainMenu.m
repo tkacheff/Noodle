@@ -40,11 +40,41 @@
     {
         SceneBase* gameScene = (SceneBase*)parentView.scene;
         dispatch_async(dispatch_get_main_queue(), ^{
-            [gameScene unpauseGame];
+            UILabel* label = [[UILabel alloc] initWithFrame:parentView.frame];
+            label.textAlignment = NSTextAlignmentCenter;
+            label.text = @"Resuming game in 3...";
+            [parentView addSubview:label];
+            [self hide];
+            
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                CATransition *animation = [CATransition animation];
+                animation.duration = 1.0;
+                animation.beginTime = CACurrentMediaTime();
+                animation.type = kCATransitionFade;
+                animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn];
+                [label.layer addAnimation:animation forKey:@"changeTextTransition"];
+                label.text = @"Resuming game in 2...";
+                
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    CATransition *animation2 = [CATransition animation];
+                    animation2.duration = 1.0;
+                    animation2.beginTime = CACurrentMediaTime();
+                    animation2.type = kCATransitionFade;
+                    animation2.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+                    [label.layer addAnimation:animation2 forKey:@"kCATransitionFade2"];
+                    label.text = @"Resuming game in 1...";
+                    
+                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                        [label removeFromSuperview];
+                        [gameScene unpauseGame];
+                    });
+                });
+            });
+            
+            /**/
+            // Change the text
         });
     }
-    
-    [self hide];
 }
 
 -(void) settingsButtonTapped
@@ -66,12 +96,6 @@
 
 -(void) hide
 {
-    if ([parentView.scene isKindOfClass:[SceneBase class]])
-    {
-        SceneBase* gameScene = (SceneBase*)parentView.scene;
-        [gameScene unpauseGame];
-    }
-    
     resumeGameButton.hidden = YES;
     settingsButton.hidden = YES;
 }

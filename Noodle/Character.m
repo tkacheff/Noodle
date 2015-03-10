@@ -164,7 +164,6 @@ static const uint32_t characterCategory  = 0x1 << 0;  // 00000000000000000000000
 -(void) doTapContext
 {
     self.physicsBody.velocity = CGVectorMake(0.0f, 0.0f);
-    
     [self doFling:CGVectorMake(0.0f, -(maxFlingImpulseConstant * 2.0f) * self.physicsBody.density)];
 }
 
