@@ -20,7 +20,19 @@
 -(void) setupWithView:(SKView*) view
 {
     parentView = view;
+    self.frame = parentView.frame;
     [parentView addSubview:self];
+    
+    UIVisualEffect *blurEffect;
+    blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
+    
+    UIVisualEffectView *visualEffectView;
+    visualEffectView = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
+    visualEffectView.alpha = 0;
+    
+    visualEffectView.frame = view.bounds;
+    [self addSubview:visualEffectView];
+    [self sendSubviewToBack:visualEffectView];
 }
 
 -(void) transitionResumeText:(UILabel*) label withString:(NSString*) string andTime:(float) time

@@ -10,7 +10,7 @@
 
 @class Settings;
 
-@interface MainMenu : UIView
+@interface MainMenu : UIVisualEffectView
 {
     SKView* parentView;
     Settings* settings;
