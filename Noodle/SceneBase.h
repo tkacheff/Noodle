@@ -19,9 +19,13 @@
     InGameUI* ui;
     
     SKNode* world;
+    SKEffectNode* rootNode;
     
     BOOL isPaused;
 }
+
+@property (retain) SKEffectNode* rootNode;
+@property (retain) SKNode* world;
 
 + (instancetype)unarchiveFromFile:(NSString *)file;
 - (void) setup;

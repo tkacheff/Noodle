@@ -44,7 +44,7 @@
         mainMenu = (MainMenu*)[[[NSBundle mainBundle] loadNibNamed:@"MainMenu" owner:self options:nil] firstObject];
         if (mainMenu && [mainMenu isKindOfClass:[MainMenu class]])
         {
-            [mainMenu setupWithView:skView];
+            [mainMenu setupWithScene:scene];
         }
     }
 }

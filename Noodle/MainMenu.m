@@ -17,22 +17,16 @@
 
 @implementation MainMenu
 
--(void) setupWithView:(SKView*) view
+-(void) setupWithScene:(SceneBase*) scene
 {
-    parentView = view;
+    parentView = scene.view;
     self.frame = parentView.frame;
     [parentView addSubview:self];
     
-    UIVisualEffect *blurEffect;
-    blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
-    
-    UIVisualEffectView *visualEffectView;
-    visualEffectView = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
-    visualEffectView.alpha = 0;
-    
-    visualEffectView.frame = view.bounds;
-    [self addSubview:visualEffectView];
-    [self sendSubviewToBack:visualEffectView];
+    /*SKEffectNode *node = [SKEffectNode node];
+    [node setShouldEnableEffects:YES];
+    CIFilter *blur = [CIFilter filterWithName:@"CIGaussianBlur" keysAndValues:@"inputRadius", @1.0f, nil];
+    [node setFilter:blur];*/
 }
 
 -(void) transitionResumeText:(UILabel*) label withString:(NSString*) string andTime:(float) time
