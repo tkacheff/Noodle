@@ -15,9 +15,6 @@
 
 @implementation SceneBase
 
-@synthesize world;
-@synthesize rootNode;
-
 //////////////////////////////////////////////////////////
 //
 // Level unpackaging
@@ -31,10 +28,10 @@
             SKSpriteNode* spriteNode = (SKSpriteNode*)descendant;
             spriteNode.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:spriteNode.frame.size];
             spriteNode.physicsBody.dynamic = NO;
+            //spriteNode.physicsBody.allowsRotation = NO;
             spriteNode.physicsBody.restitution = 0.0f;
             spriteNode.physicsBody.affectedByGravity = NO;
         }
-        
         if (descendant.children.count > 0)
         {
             [SceneBase createPhysicsBodiesHelper:descendant];
@@ -42,9 +39,13 @@
     }
 }
 
-+(void) createPhysicsBodies:(SKNode*) world
++(void) createPhysicsBodies:(SKScene*) scene
 {
-    [SceneBase createPhysicsBodiesHelper:world];
+    SKNode* world = [scene childNodeWithName:@"World"];
+    if (world)
+    {
+        [SceneBase createPhysicsBodiesHelper:world];
+    }
 }
 
 + (instancetype)unarchiveFromFile:(NSString *)file
@@ -58,19 +59,7 @@
     SceneBase *scene = [arch decodeObjectForKey:NSKeyedArchiveRootObjectKey];
     [arch finishDecoding];
     
-    scene.rootNode = [SKEffectNode node];
-    scene.world = [SKNode node];
-    [scene.rootNode addChild:scene.world];
-    
-    for (SKNode* child in scene.children)
-    {
-        [child removeFromParent];
-        [scene.world addChild:child];
-    }
-    
-    [scene addChild:scene.rootNode];
-    
-    [SceneBase createPhysicsBodies:scene.world];
+    [SceneBase createPhysicsBodies:scene];
     
     return scene;
 }
@@ -94,6 +83,7 @@
     self.scaleMode = SKSceneScaleModeAspectFill;
     self.physicsWorld.gravity = CGVectorMake(0.0, -6.0);
   
+    world = [self childNodeWithName:@"World"];
     world.physicsBody = [SKPhysicsBody bodyWithEdgeLoopFromRect:CGRectMake(-self.frame.size.width/2.0f, -self.frame.size.height/2.0f, self.frame.size.width, self.frame.size.height * 2000.0f)];
     world.physicsBody.restitution = 0.0f;
     world.physicsBody.friction = 0.0f;
@@ -109,6 +99,7 @@
     ui = [[InGameUI alloc] initWithView:self.view];
     [self setup];
 }
+
 
 ////////////////////////////////////////////////////////////
 //

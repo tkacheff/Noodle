@@ -9,9 +9,8 @@
 #import <SpriteKit/SpriteKit.h>
 
 @class Settings;
-@class SceneBase;
 
-@interface MainMenu : UIView
+@interface MainMenu : UIVisualEffectView
 {
     SKView* parentView;
     Settings* settings;
@@ -20,7 +19,7 @@
 @property IBOutlet UIButton* resumeGameButton;
 @property IBOutlet UIButton* settingsButton;
 
--(void) setupWithScene:(SceneBase*) scene;
+-(void) setupWithView:(SKView*) view;
 
 -(void) show;
 -(void) hide;
