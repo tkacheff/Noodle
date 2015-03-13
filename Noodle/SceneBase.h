@@ -8,8 +8,6 @@
 
 #import <SpriteKit/SpriteKit.h>
 
-#define PAUSE_GAME_NOTIFICATION @"GamePaused"
-
 @class SceneryManager;
 @class InGameUI;
 

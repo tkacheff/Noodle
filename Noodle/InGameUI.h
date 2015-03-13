@@ -8,9 +8,12 @@
 
 #import <SpriteKit/SpriteKit.h>
 
+@class MainMenu;
+
 @interface InGameUI : NSObject
 {
     SKView* parentView;
+    MainMenu* mainMenu;
 }
 
 -(id) initWithView:(SKView*) view;

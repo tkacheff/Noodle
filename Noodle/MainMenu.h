@@ -14,6 +14,8 @@
 {
     SKView* parentView;
     Settings* settings;
+    
+    UIImageView* blurredView;
 }
 
 @property IBOutlet UIButton* resumeGameButton;

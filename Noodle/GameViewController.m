@@ -14,10 +14,6 @@
 {
     if (self = [super initWithCoder:aDecoder])
     {
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(gameDidPause)
-                                                     name:PAUSE_GAME_NOTIFICATION
-                                                   object:NULL];
     }
     
     return self;
@@ -40,20 +36,7 @@
         InfiniteGameScene *scene = [InfiniteGameScene unarchiveFromFile:scenePath];
 
         [skView presentScene:scene];
-        
-        mainMenu = (MainMenu*)[[[NSBundle mainBundle] loadNibNamed:@"MainMenu" owner:self options:nil] firstObject];
-        if (mainMenu && [mainMenu isKindOfClass:[MainMenu class]])
-        {
-            [mainMenu setupWithView:skView];
-        }
     }
-}
-
--(void) gameDidPause
-{
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [mainMenu show];
-    });
 }
 
 - (BOOL)prefersStatusBarHidden

@@ -19,15 +19,15 @@
 -(void) setup
 {
     [super setup];
+
+    self.shouldEnableEffects = YES;
     
     self.physicsWorld.contactDelegate = self;
-    self.shouldEnableEffects = YES;
     
     camera = [[Camera alloc] initWithSize:self.size type:CameraTypeFollowPlayer];
     [world addChild:camera];
     
     SKSpriteNode* background = [[SKSpriteNode alloc] initWithTexture:[SKTexture textureWithImageNamed:@"TestBackground.png"]];
-
     [background setSize:CGSizeMake(self.size.width, world.scene.size.height * 20.0f)];
     [background setZPosition:1];
     
@@ -42,7 +42,7 @@
     {
         character = [[Character alloc] initWithSize:self.size position:CGPointMake(0, 0)];
     }
-    
+
     character.zPosition = 5;
     [world addChild:character];
     
@@ -50,7 +50,6 @@
         [self pauseGame];
     });
 }
-
 
 //////////////////////////////////////////////////////////
 //

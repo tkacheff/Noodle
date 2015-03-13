@@ -80,6 +80,7 @@
 
 -(void) setup
 {
+    self.shouldEnableEffects = YES;
     self.scaleMode = SKSceneScaleModeAspectFill;
     self.physicsWorld.gravity = CGVectorMake(0.0, -6.0);
   
@@ -96,8 +97,8 @@
 
 -(void)didMoveToView:(SKView *)view
 {
-    ui = [[InGameUI alloc] initWithView:self.view];
     [self setup];
+    ui = [[InGameUI alloc] initWithView:self.view];
 }
 
 

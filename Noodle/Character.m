@@ -20,7 +20,7 @@ static const uint32_t characterCategory  = 0x1 << 0;  // 00000000000000000000000
 
 -(id)initWithSize:(CGSize)size position:(CGPoint) position
 {
-    if (self = [super initWithColor:[UIColor orangeColor] size:CGSizeMake(24, 24)])
+    if (self = [super initWithTexture:[SKTexture textureWithImageNamed:@"dummy.png"] color:[UIColor orangeColor] size:CGSizeMake(24, 24)])
     {
         self.position = position;
         

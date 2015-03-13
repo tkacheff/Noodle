@@ -23,16 +23,42 @@
     self.frame = parentView.frame;
     [parentView addSubview:self];
     
-    UIVisualEffect *blurEffect;
-    blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self blurGameScreen];
+    });
+}
+
+-(void) blurGameScreen
+{
+    self.hidden = YES;
+    // Take screenshot
+    UIGraphicsBeginImageContextWithOptions(parentView.bounds.size, NO, 1);
+    [parentView drawViewHierarchyInRect:parentView.bounds afterScreenUpdates:YES];
+    UIImage *viewImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    self.hidden = NO;
     
-    UIVisualEffectView *visualEffectView;
-    visualEffectView = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
-    visualEffectView.alpha = 0;
+    // Blur screenshot
+    CIFilter *gaussianBlurFilter = [CIFilter filterWithName:@"CIGaussianBlur"];
+    [gaussianBlurFilter setDefaults];
+    [gaussianBlurFilter setValue:[CIImage imageWithCGImage:[viewImage CGImage]] forKey:kCIInputImageKey];
+    [gaussianBlurFilter setValue:@4 forKey:kCIInputRadiusKey];
     
-    visualEffectView.frame = view.bounds;
-    [self addSubview:visualEffectView];
-    [self sendSubviewToBack:visualEffectView];
+    CIImage *outputImage = [gaussianBlurFilter outputImage];
+    CIContext *context   = [CIContext contextWithOptions:nil];
+    
+    CGImageRef cgimg     = [context createCGImage:outputImage fromRect:self.frame];
+    UIImage *blurredImage       = [UIImage imageWithCGImage:cgimg];
+    CGImageRelease(cgimg);
+    
+    // Add blurred screenshot to scene
+    blurredView = [[UIImageView alloc] initWithImage:blurredImage];
+    blurredView.frame = self.frame;
+    if (blurredView.superview != self)
+    {
+        [self addSubview:blurredView];
+        [self sendSubviewToBack:blurredView];
+    }
 }
 
 -(void) transitionResumeText:(UILabel*) label withString:(NSString*) string andTime:(float) time
@@ -121,12 +147,14 @@
         [gameScene pauseGame];
     }
     
+    [self blurGameScreen];
     self.hidden = NO;
 }
 
 -(void) hide
 {
     self.hidden = YES;
+    [blurredView removeFromSuperview];
 }
 
 @end

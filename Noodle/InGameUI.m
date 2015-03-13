@@ -8,6 +8,7 @@
 
 #import "InGameUI.h"
 #import "SceneBase.h"
+#import "MainMenu.h"
 
 #define PAUSE_BUTTON_SIZE 32.0f
 
@@ -23,6 +24,12 @@
         button.backgroundColor = [UIColor blueColor];
         [button addTarget:self action:@selector(pauseButtonTapped) forControlEvents:UIControlEventTouchUpInside];
         [parentView addSubview:button];
+        
+        mainMenu = (MainMenu*)[[[NSBundle mainBundle] loadNibNamed:@"MainMenu" owner:self options:nil] firstObject];
+        if (mainMenu && [mainMenu isKindOfClass:[MainMenu class]])
+        {
+            [mainMenu setupWithView:view];
+        }
     }
     
     return self;
@@ -30,14 +37,7 @@
 
 -(void) pauseButtonTapped
 {
-    if ([parentView.scene isKindOfClass:[SceneBase class]])
-    {
-        SceneBase* gameScene = (SceneBase*)parentView.scene;
-        if (![gameScene getPaused])
-        {
-            [[NSNotificationCenter defaultCenter] postNotificationName:PAUSE_GAME_NOTIFICATION object:nil];
-        }
-    }
+    [mainMenu show];
 }
 
 @end

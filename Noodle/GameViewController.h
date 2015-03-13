@@ -10,7 +10,6 @@
 
 @interface GameViewController : UIViewController
 {
-    MainMenu* mainMenu;
 }
 
 @end
