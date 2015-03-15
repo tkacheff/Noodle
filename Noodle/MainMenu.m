@@ -23,6 +23,11 @@
     self.frame = parentView.frame;
     [parentView addSubview:self];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(settingsMenuClosed:)
+                                                 name:LEFT_SETTINGS_MENU
+                                               object:nil];
+    
     dispatch_async(dispatch_get_main_queue(), ^{
         [self blurGameScreen];
     });
@@ -118,25 +123,46 @@
 
 -(IBAction)settingsButtonTapped:(id)sender
 {
-    if ([parentView.scene isKindOfClass:[SceneBase class]])
+    [self transitionToSettings];
+}
+
+-(void) transitionToSettings
+{
+    if (!settings)
     {
-        SceneBase* gameScene = (SceneBase*)parentView.scene;
-        if (gameScene)
-        {
-            if (!settings)
-            {
-                settings = [[[NSBundle mainBundle] loadNibNamed:@"Settings" owner:self options:nil] firstObject];
-                if (settings && [settings isKindOfClass:[Settings class]])
-                {
-                    [self addSubview:settings];
-                }
-            }
-            else
-            {
-                [self addSubview:settings];
-            }
-        }
+        settings = [[[NSBundle mainBundle] loadNibNamed:@"Settings" owner:self options:nil] firstObject];
     }
+    
+    if (settings && [settings isKindOfClass:[Settings class]])
+    {
+        settings.alpha = 0;
+        [self addSubview:settings];
+        
+        [UIView animateWithDuration:0.5
+                              delay:0.0
+                            options:UIViewAnimationOptionCurveEaseIn
+                         animations:^{
+                             _resumeGameButton.alpha = 0;
+                             _settingsButton.alpha = 0;
+                         }
+                         completion:^(BOOL finished){
+                             [UIView animateWithDuration:0.5 animations:^{
+                                 settings.alpha = 1;
+                             }];
+        }];
+    }
+}
+
+-(void) settingsMenuClosed:(NSNotification*) note
+{
+    [UIView animateWithDuration:0.5
+            delay:0.0
+            options:UIViewAnimationOptionCurveEaseIn
+            animations:^{
+                _resumeGameButton.alpha = 1;
+                _settingsButton.alpha = 1;
+            }
+            completion:nil];
 }
 
 -(void) show

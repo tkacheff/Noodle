@@ -16,13 +16,14 @@
 		942464B61AA61DB80031E7C8 /* MainMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 942464B51AA61DB80031E7C8 /* MainMenu.m */; };
 		943E81281AA93B010056C6A2 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 943E81271AA93B010056C6A2 /* GameKit.framework */; };
 		943E812A1AA93B0C0056C6A2 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 943E81291AA93B0C0056C6A2 /* StoreKit.framework */; };
-		944236FB1A95CEBA0006C68B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 94BF03951A95C979002688C6 /* Main.storyboard */; };
+		944236FB1A95CEBA0006C68B /* Game.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 94BF03951A95C979002688C6 /* Game.storyboard */; };
 		9462731D1AAF4C85001F55AF /* Settings.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9462731C1AAF4C85001F55AF /* Settings.xib */; };
 		9462731F1AAF4DCA001F55AF /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9462731E1AAF4DCA001F55AF /* MainMenu.xib */; };
 		946273221AAF544D001F55AF /* Settings.m in Sources */ = {isa = PBXBuildFile; fileRef = 946273211AAF544D001F55AF /* Settings.m */; };
 		948FDDF11A95C47200C60756 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 948FDDEE1A95C47200C60756 /* main.m */; };
 		9490CE8B1A9B909400DA7382 /* Camera.m in Sources */ = {isa = PBXBuildFile; fileRef = 9490CE8A1A9B909400DA7382 /* Camera.m */; };
 		9490CE8F1A9B98F500DA7382 /* SceneryManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9490CE8E1A9B98F500DA7382 /* SceneryManager.m */; };
+		94A6C53D1AB348C000193168 /* SettingsStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 94A6C53C1AB348C000193168 /* SettingsStorage.m */; };
 		94A70DFD1A9C24F800C9598E /* backgrounds.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 94A70DFC1A9C24F800C9598E /* backgrounds.atlas */; };
 		94A70E031A9C27DF00C9598E /* Levels in Resources */ = {isa = PBXBuildFile; fileRef = 94A70E021A9C27DF00C9598E /* Levels */; };
 		94A75E7B1A9CEB8000057C48 /* UserInputController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94A75E7A1A9CEB8000057C48 /* UserInputController.m */; };
@@ -66,6 +67,8 @@
 		9490CE8C1A9B90AB00DA7382 /* Camera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Camera.h; sourceTree = "<group>"; };
 		9490CE8D1A9B98F500DA7382 /* SceneryManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SceneryManager.h; sourceTree = "<group>"; };
 		9490CE8E1A9B98F500DA7382 /* SceneryManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SceneryManager.m; sourceTree = "<group>"; };
+		94A6C53B1AB348C000193168 /* SettingsStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsStorage.h; sourceTree = "<group>"; };
+		94A6C53C1AB348C000193168 /* SettingsStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsStorage.m; sourceTree = "<group>"; };
 		94A70DFC1A9C24F800C9598E /* backgrounds.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = backgrounds.atlas; sourceTree = "<group>"; };
 		94A70E021A9C27DF00C9598E /* Levels */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Levels; sourceTree = "<group>"; };
 		94A75E791A9CEB8000057C48 /* UserInputController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInputController.h; sourceTree = "<group>"; };
@@ -79,7 +82,7 @@
 		94BF03901A95C958002688C6 /* Character.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Character.h; path = Noodle/Character.h; sourceTree = SOURCE_ROOT; };
 		94BF03911A95C958002688C6 /* Character.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Character.m; path = Noodle/Character.m; sourceTree = SOURCE_ROOT; };
 		94BF03931A95C96D002688C6 /* Launch Screen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "Launch Screen.xib"; path = "Noodle/Launch Screen.xib"; sourceTree = SOURCE_ROOT; };
-		94BF03961A95C979002688C6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Noodle/Base.lproj/Main.storyboard; sourceTree = SOURCE_ROOT; };
+		94BF03961A95C979002688C6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Noodle/Base.lproj/Game.storyboard; sourceTree = SOURCE_ROOT; };
 		94BF03981A95C98C002688C6 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Noodle/AppDelegate.h; sourceTree = SOURCE_ROOT; };
 		94BF03991A95C98C002688C6 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = Noodle/AppDelegate.m; sourceTree = SOURCE_ROOT; };
 		94BF039A1A95C98C002688C6 /* GameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameViewController.h; path = Noodle/GameViewController.h; sourceTree = SOURCE_ROOT; };
@@ -139,7 +142,7 @@
 		66DF6A1E17FB871B00CC9BD1 /* Noodle */ = {
 			isa = PBXGroup;
 			children = (
-				943E812B1AA93B170056C6A2 /* Noodle.entitlements */,
+				94A6C53A1AB3489800193168 /* Storage */,
 				9419345A1AA30D5700DDEA00 /* UI */,
 				94A75E781A9CEB3000057C48 /* User Input */,
 				944236FA1A95CC000006C68B /* iOS Stuff */,
@@ -155,7 +158,8 @@
 		66DF6A1F17FB871B00CC9BD1 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				94BF03951A95C979002688C6 /* Main.storyboard */,
+				943E812B1AA93B170056C6A2 /* Noodle.entitlements */,
+				94BF03951A95C979002688C6 /* Game.storyboard */,
 				94BF03931A95C96D002688C6 /* Launch Screen.xib */,
 				94BF03811A95C4C3002688C6 /* InfoPlist.strings */,
 				948FDDEE1A95C47200C60756 /* main.m */,
@@ -193,8 +197,6 @@
 			isa = PBXGroup;
 			children = (
 				9419345B1AA30D5F00DDEA00 /* In-Game */,
-				942464B41AA61DB80031E7C8 /* MainMenu.h */,
-				942464B51AA61DB80031E7C8 /* MainMenu.m */,
 				946273201AAF544D001F55AF /* Settings.h */,
 				946273211AAF544D001F55AF /* Settings.m */,
 			);
@@ -204,6 +206,8 @@
 		9419345B1AA30D5F00DDEA00 /* In-Game */ = {
 			isa = PBXGroup;
 			children = (
+				942464B41AA61DB80031E7C8 /* MainMenu.h */,
+				942464B51AA61DB80031E7C8 /* MainMenu.m */,
 				9419345C1AA30D7D00DDEA00 /* InGameUI.h */,
 				9419345D1AA30D7D00DDEA00 /* InGameUI.m */,
 			);
@@ -230,6 +234,15 @@
 				94BF039B1A95C98C002688C6 /* GameViewController.m */,
 			);
 			name = "iOS Stuff";
+			sourceTree = "<group>";
+		};
+		94A6C53A1AB3489800193168 /* Storage */ = {
+			isa = PBXGroup;
+			children = (
+				94A6C53B1AB348C000193168 /* SettingsStorage.h */,
+				94A6C53C1AB348C000193168 /* SettingsStorage.m */,
+			);
+			name = Storage;
 			sourceTree = "<group>";
 		};
 		94A75E781A9CEB3000057C48 /* User Input */ = {
@@ -323,7 +336,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				94D9AE091AA841160071D14B /* Shaders in Resources */,
-				944236FB1A95CEBA0006C68B /* Main.storyboard in Resources */,
+				944236FB1A95CEBA0006C68B /* Game.storyboard in Resources */,
 				94A70E031A9C27DF00C9598E /* Levels in Resources */,
 				94BF038A1A95C592002688C6 /* bg@3x~iphone.png in Resources */,
 				94BF038B1A95C592002688C6 /* bg~ipad.png in Resources */,
@@ -345,6 +358,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				94A6C53D1AB348C000193168 /* SettingsStorage.m in Sources */,
 				9490CE8B1A9B909400DA7382 /* Camera.m in Sources */,
 				9419345E1AA30D7D00DDEA00 /* InGameUI.m in Sources */,
 				946273221AAF544D001F55AF /* Settings.m in Sources */,
@@ -371,12 +385,12 @@
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
-		94BF03951A95C979002688C6 /* Main.storyboard */ = {
+		94BF03951A95C979002688C6 /* Game.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				94BF03961A95C979002688C6 /* Base */,
 			);
-			name = Main.storyboard;
+			name = Game.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

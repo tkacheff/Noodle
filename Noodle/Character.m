@@ -5,6 +5,7 @@
 //  Created by Ben Tkacheff on 2/16/15.
 //
 
+#import "SettingsStorage.h"
 #import "Character.h"
 
 #define START_DENSITY 5.0f
@@ -44,6 +45,8 @@ static const uint32_t characterCategory  = 0x1 << 0;  // 00000000000000000000000
         
         isTap = false;
         
+        flingIsInverted = [[SettingsStorage sharedManager] getInvertFling];
+        
         NSMutableArray* flingNodes = [[NSMutableArray alloc] init];
         for (int i = 0; i < NUM_OF_PROJECTIONS; ++i)
         {
@@ -52,9 +55,19 @@ static const uint32_t characterCategory  = 0x1 << 0;  // 00000000000000000000000
             [flingNodes addObject:sprite];
         }
         flingLineNodes = [[NSArray alloc] initWithArray:flingNodes];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(flingControlsInverted)
+                                                     name:INVERT_FLING_KEY
+                                                   object:nil];
     }
     
     return self;
+}
+
+-(void) flingControlsInverted
+{
+    flingIsInverted = [[SettingsStorage sharedManager] getInvertFling];
 }
 
 -(void) update:(CFTimeInterval)currentTime
@@ -195,14 +208,22 @@ static const uint32_t characterCategory  = 0x1 << 0;  // 00000000000000000000000
 
 -(CGVector) getCurrentImpulse:(CGPoint) newPos initPos:(CGPoint) initPos
 {
-    CGVector impulse = CGVectorMake( (newPos.x - initPos.x) * self.physicsBody.density, (newPos.y - initPos.y) * self.physicsBody.density);
+    CGVector impulse = CGVectorMake(0, 0);
+    if (flingIsInverted)
+    {
+        impulse = CGVectorMake( (initPos.x - newPos.x) * self.physicsBody.density, (initPos.y - newPos.y) * self.physicsBody.density);
+    }
+    else
+    {
+        impulse = CGVectorMake( (newPos.x - initPos.x) * self.physicsBody.density, (newPos.y - initPos.y) * self.physicsBody.density);
+    }
     
     const float length = sqrt(impulse.dx * impulse.dx + impulse.dy * impulse.dy);
     const float maxImpulseForce = maxFlingImpulseConstant * self.physicsBody.density;
     
     if (length > maxImpulseForce)
     {
-        float percentage = maxImpulseForce/length;
+        float percentage = (maxImpulseForce/length);
         impulse = CGVectorMake(impulse.dx * percentage, impulse.dy * percentage);
     }
     

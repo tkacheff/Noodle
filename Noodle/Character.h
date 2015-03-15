@@ -24,6 +24,9 @@
     bool isTap;
     UITouch* flingTouch;
     CGPoint initFlingPos;
+    
+    // User Configs
+    BOOL flingIsInverted;
 }
 
 
