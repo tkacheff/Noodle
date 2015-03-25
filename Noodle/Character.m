@@ -10,7 +10,7 @@
 
 #define START_DENSITY 5.0f
 #define MAX_TAP_DISTANCE 4.0f
-#define MAX_FLING_COUNT 2
+#define MAX_FLING_COUNT 1
 #define SLOWDOWN_SPEED 0.25f
 #define NUM_OF_PROJECTIONS 17
 
@@ -21,31 +21,33 @@ static const uint32_t characterCategory  = 0x1 << 0;  // 00000000000000000000000
 
 -(id)initWithSize:(CGSize)size position:(CGPoint) position
 {
-    if (self = [super initWithTexture:[SKTexture textureWithImageNamed:@"dummy.png"] color:[UIColor orangeColor] size:CGSizeMake(24, 24)])
+    if (self = [super initWithTexture:[SKTexture textureWithImageNamed:@"characterTemp.png"] color:[UIColor orangeColor] size:CGSizeMake(24, 24)])
     {
         self.position = position;
         
-        self.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:self.frame.size];
+        self.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(self.frame.size.width/2.0f, self.frame.size.height - 4.0f)];
         self.physicsBody.restitution = 0;
         self.physicsBody.density = START_DENSITY;
         self.physicsBody.allowsRotation = false;
         self.physicsBody.friction = 1.0;
         self.physicsBody.linearDamping = 0.7f;
+        self.physicsBody.usesPreciseCollisionDetection = YES;
         
         self.physicsBody.contactTestBitMask = characterCategory;
         self.physicsBody.categoryBitMask = characterCategory;
         
-        maxFlingImpulseConstant = 12.0f;
+        maxFlingImpulseConstant = 6.0f;
         lastTimeUpdate = 0;
         
         ceilingHangTime = 0.1f;
         flingRemainCount = MAX_FLING_COUNT;
-        touchingPlatform = NO;
+        platformStanding = NO;
         sideTouchBody = nil;
         
         isTap = false;
         
         flingIsInverted = [[SettingsStorage sharedManager] getInvertFling];
+        flingSensitivity = [[SettingsStorage sharedManager] getFlingSensitivity];
         
         NSMutableArray* flingNodes = [[NSMutableArray alloc] init];
         for (int i = 0; i < NUM_OF_PROJECTIONS; ++i)
@@ -60,9 +62,19 @@ static const uint32_t characterCategory  = 0x1 << 0;  // 00000000000000000000000
                                                  selector:@selector(flingControlsInverted)
                                                      name:INVERT_FLING_KEY
                                                    object:nil];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(flingSensitivityChanged)
+                                                     name:FLING_SENSITIVITY_KEY
+                                                   object:nil];
     }
     
     return self;
+}
+
+-(void) flingSensitivityChanged
+{
+    flingSensitivity = [[SettingsStorage sharedManager] getFlingSensitivity];
 }
 
 -(void) flingControlsInverted
@@ -85,7 +97,6 @@ static const uint32_t characterCategory  = 0x1 << 0;  // 00000000000000000000000
         return;
     }
     
-    
     lastTimeUpdate = currentTime;
 }
 
@@ -103,7 +114,10 @@ static const uint32_t characterCategory  = 0x1 << 0;  // 00000000000000000000000
             flingTouch = newTouch;
             initFlingPos = [flingTouch locationInNode:self.scene];
             
-            [self startFlingLine];
+            if (flingRemainCount >= 0)
+            {
+                [self startFlingLine];
+            }
             return flingTouch;
         }
     }
@@ -123,7 +137,10 @@ static const uint32_t characterCategory  = 0x1 << 0;  // 00000000000000000000000
                 isTap = false;
             }
             
-            [self updateFlingLine:currentTouchPos initPos:initFlingPos];
+            if (!isTap && flingRemainCount >= 0)
+            {
+                [self updateFlingLine:currentTouchPos initPos:initFlingPos];
+            }
 
             return flingTouch;
         }
@@ -140,9 +157,9 @@ static const uint32_t characterCategory  = 0x1 << 0;  // 00000000000000000000000
             if (isTap)
             {
                 [self cancelFlingLine];
-                [self doTapContext];
+                [self doTapContext:newTouch];
             }
-            else
+            else if (flingRemainCount >= 0)
             {
                 [self finishFlingLine:[flingTouch locationInNode:self.scene] initPos:initFlingPos];
             }
@@ -174,10 +191,10 @@ static const uint32_t characterCategory  = 0x1 << 0;  // 00000000000000000000000
 /////////////////////////////////////////////////
 // Tap Handling
 /////////////////////////////////////////////
--(void) doTapContext
+-(void) doTapContext:(UITouch*) tapTouch
 {
     self.physicsBody.velocity = CGVectorMake(0.0f, 0.0f);
-    [self doFling:CGVectorMake(0.0f, -(maxFlingImpulseConstant * 2.0f) * self.physicsBody.density)];
+    [self doFling:CGVectorMake(0.0f, -(maxFlingImpulseConstant * 1.2f) * self.physicsBody.density)];
 }
 
 
@@ -211,11 +228,11 @@ static const uint32_t characterCategory  = 0x1 << 0;  // 00000000000000000000000
     CGVector impulse = CGVectorMake(0, 0);
     if (flingIsInverted)
     {
-        impulse = CGVectorMake( (initPos.x - newPos.x) * self.physicsBody.density, (initPos.y - newPos.y) * self.physicsBody.density);
+        impulse = CGVectorMake( (initPos.x - newPos.x) * self.physicsBody.density * flingSensitivity, (initPos.y - newPos.y) * self.physicsBody.density * flingSensitivity);
     }
     else
     {
-        impulse = CGVectorMake( (newPos.x - initPos.x) * self.physicsBody.density, (newPos.y - initPos.y) * self.physicsBody.density);
+        impulse = CGVectorMake( (newPos.x - initPos.x) * self.physicsBody.density * flingSensitivity, (newPos.y - initPos.y) * self.physicsBody.density * flingSensitivity);
     }
     
     const float length = sqrt(impulse.dx * impulse.dx + impulse.dy * impulse.dy);
@@ -232,12 +249,9 @@ static const uint32_t characterCategory  = 0x1 << 0;  // 00000000000000000000000
 
 -(void) startFlingLine
 {
-    if (touchingPlatform || flingRemainCount > 0)
+    if (!platformStanding)
     {
-        if (!touchingPlatform)
-        {
-            self.scene.physicsWorld.speed = SLOWDOWN_SPEED;
-        }
+        self.scene.physicsWorld.speed = SLOWDOWN_SPEED;
     }
 }
 
@@ -271,7 +285,10 @@ static const uint32_t characterCategory  = 0x1 << 0;  // 00000000000000000000000
         return;
     }
     
-    flingRemainCount--;
+    if (!platformStanding)
+    {
+        flingRemainCount--;
+    }
     
     [self cancelFlingLine];
     
@@ -306,16 +323,16 @@ static const uint32_t characterCategory  = 0x1 << 0;  // 00000000000000000000000
     if (sideTouchBody == otherBody && fabs(contactNormal.dx) >= 0.5)
     {
         sideTouchBody = nil;
-        if (flingRemainCount > 0)
-        {
-            flingRemainCount--;
-        }
     }
     
     if (self.physicsBody.allContactedBodies.count <= 0)
     {
         self.physicsBody.affectedByGravity = YES;
-        touchingPlatform = NO;
+        if (platformStanding)
+        {
+            flingRemainCount--;
+        }
+        platformStanding = NO;
         sideTouchBody = nil;
     }
 }
@@ -326,10 +343,6 @@ static const uint32_t characterCategory  = 0x1 << 0;  // 00000000000000000000000
     {
         [self.physicsBody applyImpulse:CGVectorMake(0, -self.scene.physicsWorld.gravity.dy)];
         sideTouchBody = otherBody;
-        if (!touchingPlatform && flingRemainCount < MAX_FLING_COUNT)
-        {
-            flingRemainCount++;
-        }
     }
     
     if (contactNormal.dy <= -0.8)
@@ -341,13 +354,13 @@ static const uint32_t characterCategory  = 0x1 << 0;  // 00000000000000000000000
     }
     else if(contactNormal.dy >= 0.8)
     {
-        if (!touchingPlatform)
+        if (!platformStanding)
         {
             self.physicsBody.velocity = CGVectorMake(0, self.physicsBody.velocity.dy);
             self.scene.physicsWorld.speed = 1.0;
         }
-        flingRemainCount = 2;
-        touchingPlatform = YES;
+        flingRemainCount = MAX_FLING_COUNT;
+        platformStanding = YES;
     }
     
 }

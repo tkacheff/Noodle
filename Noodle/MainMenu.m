@@ -47,7 +47,7 @@
     CIFilter *gaussianBlurFilter = [CIFilter filterWithName:@"CIGaussianBlur"];
     [gaussianBlurFilter setDefaults];
     [gaussianBlurFilter setValue:[CIImage imageWithCGImage:[viewImage CGImage]] forKey:kCIInputImageKey];
-    [gaussianBlurFilter setValue:@4 forKey:kCIInputRadiusKey];
+    [gaussianBlurFilter setValue:@5 forKey:kCIInputRadiusKey];
     
     CIImage *outputImage = [gaussianBlurFilter outputImage];
     CIContext *context   = [CIContext contextWithOptions:nil];
@@ -58,7 +58,8 @@
     
     // Add blurred screenshot to scene
     blurredView = [[UIImageView alloc] initWithImage:blurredImage];
-    blurredView.frame = self.frame;
+    CGRect thisRect = self.frame;
+    blurredView.frame = thisRect;
     if (blurredView.superview != self)
     {
         [self addSubview:blurredView];
@@ -78,7 +79,7 @@
 
 -(void) showResumeAnimation:(SceneBase*) gameScene
 {
-    const float timeForEachLabel = 0.7;
+    const float timeForEachLabel = 0.4;
     
     UILabel* label = [[UILabel alloc] initWithFrame:parentView.frame];
     label.textAlignment = NSTextAlignmentCenter;

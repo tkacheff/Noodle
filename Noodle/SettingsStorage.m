@@ -32,7 +32,7 @@
         }
         else
         {
-            storedFlingSenstivity = 0.5;
+            storedFlingSenstivity = 1.0;
         }
         
         if ([prefs objectForKey:INVERT_FLING_KEY] != nil)
@@ -71,7 +71,7 @@
     [self saveInvertFling];
 }
 
--(void) setFlingSensitivity:(BOOL) value
+-(void) setFlingSensitivity:(float) value
 {
     storedFlingSenstivity = value;
     [self saveFlingSensitivty];

@@ -12,6 +12,7 @@
 @interface Settings ()
 -(IBAction)returnTapped:(id)sender;
 -(IBAction)invertFlingSwitched:(id)sender;
+-(IBAction)flingSensitivtyChanged:(id)sender;
 @end
 
 @implementation Settings
@@ -20,8 +21,6 @@
 {
     if (self = [super initWithCoder:aDecoder])
     {
-        SettingsStorage* storage = [SettingsStorage sharedManager];
-        self.invertControlsSwitch.on = [storage getInvertFling];
     }
     return self;
 }
@@ -29,6 +28,10 @@
 -(void) willMoveToSuperview:(UIView *)newSuperview
 {
     self.frame = newSuperview.frame;
+    
+    SettingsStorage* storage = [SettingsStorage sharedManager];
+    self.invertControlsSwitch.on = [storage getInvertFling];
+    self.sensitivitySlider.value = [storage getFlingSensitivity];
 }
 
 -(IBAction)returnTapped:(id)sender
@@ -56,6 +59,17 @@
     [settingsStorage setInvertFling:[self.invertControlsSwitch isOn]];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:INVERT_FLING_KEY object:nil];
+}
+
+
+-(IBAction)flingSensitivtyChanged:(id)sender
+{
+    float newValue = self.sensitivitySlider.value;
+    
+    SettingsStorage* settingsStorage = [SettingsStorage sharedManager];
+    [settingsStorage setFlingSensitivity:newValue];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:FLING_SENSITIVITY_KEY object:nil];
 }
 
 @end

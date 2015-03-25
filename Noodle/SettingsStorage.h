@@ -20,7 +20,7 @@
 + (id)sharedManager;
 
 -(void) setInvertFling:(BOOL) value;
--(void) setFlingSensitivity:(BOOL) value;
+-(void) setFlingSensitivity:(float) value;
 
 -(BOOL) getInvertFling;
 -(float) getFlingSensitivity;

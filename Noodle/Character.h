@@ -17,7 +17,7 @@
     NSArray* flingLineNodes;
     
     SKPhysicsBody* sideTouchBody;
-    BOOL touchingPlatform;
+    BOOL platformStanding;
     int flingRemainCount;
     float ceilingHangTime;
     
@@ -27,6 +27,7 @@
     
     // User Configs
     BOOL flingIsInverted;
+    float flingSensitivity;
 }
 
 

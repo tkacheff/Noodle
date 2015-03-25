@@ -10,62 +10,62 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OeG-ep-6Pl">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oIL-gL-8s2">
                     <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="30" id="3JS-RF-8cQ"/>
-                        <constraint firstAttribute="width" constant="57" id="xbW-8K-eoj"/>
-                    </constraints>
-                    <state key="normal" title="Settings">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <variation key="default">
-                        <mask key="constraints">
-                            <exclude reference="3JS-RF-8cQ"/>
-                            <exclude reference="xbW-8K-eoj"/>
-                        </mask>
-                    </variation>
-                    <variation key="widthClass=compact">
-                        <mask key="constraints">
-                            <include reference="3JS-RF-8cQ"/>
-                            <include reference="xbW-8K-eoj"/>
-                        </mask>
-                    </variation>
-                    <connections>
-                        <action selector="settingsButtonTapped:" destination="iN0-l3-epB" eventType="touchUpInside" id="hqc-mc-UFc"/>
-                    </connections>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nIa-9l-Lij">
-                    <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="102" id="3tC-wy-JEc"/>
-                        <constraint firstAttribute="height" constant="30" id="LEL-It-xmy"/>
+                        <constraint firstAttribute="width" constant="102" id="97r-7L-EOx"/>
+                        <constraint firstAttribute="height" constant="30" id="hry-Zl-OHX"/>
                     </constraints>
                     <state key="normal" title="Resume Game">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <variation key="default">
                         <mask key="constraints">
-                            <exclude reference="3tC-wy-JEc"/>
-                            <exclude reference="LEL-It-xmy"/>
+                            <exclude reference="97r-7L-EOx"/>
+                            <exclude reference="hry-Zl-OHX"/>
                         </mask>
                     </variation>
-                    <variation key="widthClass=compact">
+                    <variation key="heightClass=regular">
                         <mask key="constraints">
-                            <include reference="3tC-wy-JEc"/>
-                            <include reference="LEL-It-xmy"/>
+                            <include reference="97r-7L-EOx"/>
+                            <include reference="hry-Zl-OHX"/>
                         </mask>
                     </variation>
                     <connections>
-                        <action selector="startGameTapped:" destination="iN0-l3-epB" eventType="touchUpInside" id="TUz-Ei-URF"/>
+                        <action selector="startGameTapped:" destination="iN0-l3-epB" eventType="touchUpInside" id="QVZ-fd-HOm"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l87-43-HmX">
+                    <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="4dT-FM-fyI"/>
+                        <constraint firstAttribute="width" constant="57" id="b6J-hc-Al4"/>
+                    </constraints>
+                    <state key="normal" title="Settings">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="4dT-FM-fyI"/>
+                            <exclude reference="b6J-hc-Al4"/>
+                        </mask>
+                    </variation>
+                    <variation key="heightClass=regular">
+                        <mask key="constraints">
+                            <include reference="4dT-FM-fyI"/>
+                            <include reference="b6J-hc-Al4"/>
+                        </mask>
+                    </variation>
+                    <connections>
+                        <action selector="settingsButtonTapped:" destination="iN0-l3-epB" eventType="touchUpInside" id="9vn-EA-Mm5"/>
                     </connections>
                 </button>
             </subviews>
             <constraints>
-                <constraint firstAttribute="centerX" secondItem="nIa-9l-Lij" secondAttribute="centerX" id="RMh-zg-mmb"/>
-                <constraint firstAttribute="bottom" secondItem="OeG-ep-6Pl" secondAttribute="bottom" constant="210" id="gv7-17-JNk"/>
-                <constraint firstAttribute="centerX" secondItem="OeG-ep-6Pl" secondAttribute="centerX" id="wly-Yw-44A"/>
-                <constraint firstItem="OeG-ep-6Pl" firstAttribute="top" secondItem="nIa-9l-Lij" secondAttribute="bottom" constant="35" id="xZD-TX-biI"/>
+                <constraint firstAttribute="centerX" secondItem="oIL-gL-8s2" secondAttribute="centerX" id="FkS-zU-cOu"/>
+                <constraint firstAttribute="bottom" secondItem="l87-43-HmX" secondAttribute="bottom" constant="236" id="JjN-6O-aTc"/>
+                <constraint firstAttribute="centerX" secondItem="l87-43-HmX" secondAttribute="centerX" id="jGy-rb-pH9"/>
+                <constraint firstItem="l87-43-HmX" firstAttribute="top" secondItem="oIL-gL-8s2" secondAttribute="bottom" constant="53" id="tSp-49-LaC"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <nil key="simulatedTopBarMetrics"/>
@@ -74,31 +74,31 @@
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
             <variation key="default">
                 <mask key="subviews">
-                    <exclude reference="OeG-ep-6Pl"/>
-                    <exclude reference="nIa-9l-Lij"/>
+                    <exclude reference="oIL-gL-8s2"/>
+                    <exclude reference="l87-43-HmX"/>
                 </mask>
                 <mask key="constraints">
-                    <exclude reference="gv7-17-JNk"/>
-                    <exclude reference="wly-Yw-44A"/>
-                    <exclude reference="xZD-TX-biI"/>
-                    <exclude reference="RMh-zg-mmb"/>
+                    <exclude reference="JjN-6O-aTc"/>
+                    <exclude reference="jGy-rb-pH9"/>
+                    <exclude reference="tSp-49-LaC"/>
+                    <exclude reference="FkS-zU-cOu"/>
                 </mask>
             </variation>
-            <variation key="widthClass=compact">
+            <variation key="heightClass=regular">
                 <mask key="subviews">
-                    <include reference="OeG-ep-6Pl"/>
-                    <include reference="nIa-9l-Lij"/>
+                    <include reference="oIL-gL-8s2"/>
+                    <include reference="l87-43-HmX"/>
                 </mask>
                 <mask key="constraints">
-                    <include reference="gv7-17-JNk"/>
-                    <include reference="wly-Yw-44A"/>
-                    <include reference="xZD-TX-biI"/>
-                    <include reference="RMh-zg-mmb"/>
+                    <include reference="JjN-6O-aTc"/>
+                    <include reference="jGy-rb-pH9"/>
+                    <include reference="tSp-49-LaC"/>
+                    <include reference="FkS-zU-cOu"/>
                 </mask>
             </variation>
             <connections>
-                <outlet property="resumeGameButton" destination="nIa-9l-Lij" id="C1A-uU-nOJ"/>
-                <outlet property="settingsButton" destination="OeG-ep-6Pl" id="xXv-CX-kUf"/>
+                <outlet property="resumeGameButton" destination="oIL-gL-8s2" id="vjy-dV-UvF"/>
+                <outlet property="settingsButton" destination="l87-43-HmX" id="uQ4-7W-9T6"/>
             </connections>
         </view>
     </objects>

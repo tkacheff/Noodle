@@ -26,12 +26,16 @@
         if ([descendant isKindOfClass:[SKSpriteNode class]])
         {
             SKSpriteNode* spriteNode = (SKSpriteNode*)descendant;
-            spriteNode.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:spriteNode.frame.size];
-            spriteNode.physicsBody.dynamic = NO;
-            //spriteNode.physicsBody.allowsRotation = NO;
-            spriteNode.physicsBody.restitution = 0.0f;
-            spriteNode.physicsBody.affectedByGravity = NO;
+            if (spriteNode.zRotation == 0)
+            {
+                spriteNode.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:spriteNode.frame.size];
+                spriteNode.physicsBody.dynamic = NO;
+                spriteNode.physicsBody.allowsRotation = YES;
+                spriteNode.physicsBody.restitution = 0.0f;
+                spriteNode.physicsBody.affectedByGravity = NO;
+            }
         }
+        
         if (descendant.children.count > 0)
         {
             [SceneBase createPhysicsBodiesHelper:descendant];
