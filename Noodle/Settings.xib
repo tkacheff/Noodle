@@ -10,7 +10,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <slider opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="0.10000000000000001" maxValue="1.5" translatesAutoresizingMaskIntoConstraints="NO" id="IFV-bI-tpI">
+                <slider opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.10000000000000001" maxValue="1.5" translatesAutoresizingMaskIntoConstraints="NO" id="IFV-bI-tpI">
                     <rect key="frame" x="61" y="161" width="181" height="31"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="C5D-am-fSg"/>

@@ -20,7 +20,7 @@
     {
         parentView = view;
         
-        UIButton* button = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, PAUSE_BUTTON_SIZE, PAUSE_BUTTON_SIZE)];
+        UIButton* button = [[UIButton alloc] initWithFrame:CGRectMake(0, parentView.frame.size.height - PAUSE_BUTTON_SIZE, PAUSE_BUTTON_SIZE, PAUSE_BUTTON_SIZE)];
         button.backgroundColor = [UIColor blueColor];
         [button addTarget:self action:@selector(pauseButtonTapped) forControlEvents:UIControlEventTouchUpInside];
         [parentView addSubview:button];

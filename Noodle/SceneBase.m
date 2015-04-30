@@ -8,7 +8,7 @@
 
 #import "SceneBase.h"
 
-#import "InfiniteGameScene.h"
+#import "LevelGameScene.h"
 #import "SceneryManager.h"
 #import "InGameUI.h"
 

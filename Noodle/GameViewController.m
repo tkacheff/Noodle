@@ -5,7 +5,7 @@
 //
 
 #import "GameViewController.h"
-#import "InfiniteGameScene.h"
+#import "LevelGameScene.h"
 #import "MainMenu.h"
 
 @implementation GameViewController
@@ -32,8 +32,10 @@
         skView.showsNodeCount = YES;
         skView.showsPhysics = YES;
 #endif
+        // todo: choose what level to load
+        
         NSString *scenePath = [[NSBundle mainBundle] pathForResource:@"Levels/FirstGameLevel" ofType:@"sks"];
-        InfiniteGameScene *scene = [InfiniteGameScene unarchiveFromFile:scenePath];
+        LevelGameScene *scene = [LevelGameScene unarchiveFromFile:scenePath];
 
         [skView presentScene:scene];
     }

@@ -10,7 +10,7 @@
 @class Character;
 @class Camera;
 
-@interface InfiniteGameScene : SceneBase<SKPhysicsContactDelegate>
+@interface LevelGameScene : SceneBase<SKPhysicsContactDelegate>
 {
     Character *character;
     Camera *camera;

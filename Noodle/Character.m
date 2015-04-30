@@ -31,12 +31,11 @@ static const uint32_t characterCategory  = 0x1 << 0;  // 00000000000000000000000
         self.physicsBody.allowsRotation = false;
         self.physicsBody.friction = 1.0;
         self.physicsBody.linearDamping = 0.7f;
-        self.physicsBody.usesPreciseCollisionDetection = YES;
         
         self.physicsBody.contactTestBitMask = characterCategory;
         self.physicsBody.categoryBitMask = characterCategory;
         
-        maxFlingImpulseConstant = 6.0f;
+        maxFlingImpulseConstant = 5.4f;
         lastTimeUpdate = 0;
         
         ceilingHangTime = 0.1f;
@@ -194,7 +193,7 @@ static const uint32_t characterCategory  = 0x1 << 0;  // 00000000000000000000000
 -(void) doTapContext:(UITouch*) tapTouch
 {
     self.physicsBody.velocity = CGVectorMake(0.0f, 0.0f);
-    [self doFling:CGVectorMake(0.0f, -(maxFlingImpulseConstant * 1.2f) * self.physicsBody.density)];
+    [self doFling:CGVectorMake(0.0f, -(maxFlingImpulseConstant) * self.physicsBody.density)];
 }
 
 
@@ -356,11 +355,11 @@ static const uint32_t characterCategory  = 0x1 << 0;  // 00000000000000000000000
     {
         if (!platformStanding)
         {
-            self.physicsBody.velocity = CGVectorMake(0, self.physicsBody.velocity.dy);
+            self.physicsBody.velocity = CGVectorMake(0, 0);
             self.scene.physicsWorld.speed = 1.0;
+            platformStanding = YES;
         }
         flingRemainCount = MAX_FLING_COUNT;
-        platformStanding = YES;
     }
     
 }

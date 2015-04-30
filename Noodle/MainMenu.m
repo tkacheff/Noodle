@@ -10,6 +10,8 @@
 #import "SceneBase.h"
 #import "Settings.h"
 
+#define BLUR_ANIMATION_DURATION 0.5
+
 @interface MainMenu ()
 -(IBAction)startGameTapped:(id)sender;
 -(IBAction)settingsButtonTapped:(id)sender;
@@ -60,11 +62,21 @@
     blurredView = [[UIImageView alloc] initWithImage:blurredImage];
     CGRect thisRect = self.frame;
     blurredView.frame = thisRect;
+    blurredView.alpha = 0.0f;
+    
     if (blurredView.superview != self)
     {
         [self addSubview:blurredView];
         [self sendSubviewToBack:blurredView];
     }
+    
+    [UIView animateWithDuration:BLUR_ANIMATION_DURATION/4.0
+                          delay:0.0
+                        options:UIViewAnimationOptionCurveEaseIn
+                     animations:^{
+                         blurredView.alpha = 1.0f;
+    }
+                     completion:nil];
 }
 
 -(void) transitionResumeText:(UILabel*) label withString:(NSString*) string andTime:(float) time
@@ -180,8 +192,17 @@
 
 -(void) hide
 {
-    self.hidden = YES;
-    [blurredView removeFromSuperview];
+    [UIView animateWithDuration:BLUR_ANIMATION_DURATION
+                          delay:0.0
+                        options:UIViewAnimationOptionCurveEaseOut
+                     animations:^{
+                         blurredView.alpha = 0.0;
+                     }
+                     completion:^(BOOL completed)
+     {
+         self.hidden = YES;
+         [blurredView removeFromSuperview];
+     }];
 }
 
 @end

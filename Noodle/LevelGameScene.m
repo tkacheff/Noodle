@@ -4,13 +4,13 @@
 //
 //
 
-#import "InfiniteGameScene.h"
+#import "LevelGameScene.h"
 #import "Character.h"
 #import "Camera.h"
 #import "SceneryManager.h"
 #import "InGameUI.h"
 
-@implementation InfiniteGameScene
+@implementation LevelGameScene
 
 //////////////////////////////////////////////////////////
 //
@@ -21,7 +21,6 @@
     [super setup];
 
     self.shouldEnableEffects = YES;
-    
     self.physicsWorld.contactDelegate = self;
     
     camera = [[Camera alloc] initWithSize:self.size type:CameraTypeFollowPlayer];

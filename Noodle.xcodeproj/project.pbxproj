@@ -28,16 +28,12 @@
 		94A70E031A9C27DF00C9598E /* Levels in Resources */ = {isa = PBXBuildFile; fileRef = 94A70E021A9C27DF00C9598E /* Levels */; };
 		94A75E7B1A9CEB8000057C48 /* UserInputController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94A75E7A1A9CEB8000057C48 /* UserInputController.m */; };
 		94BF03831A95C4C3002688C6 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 94BF03811A95C4C3002688C6 /* InfoPlist.strings */; };
-		94BF03881A95C592002688C6 /* bg@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 94BF03841A95C592002688C6 /* bg@2x~ipad.png */; };
-		94BF03891A95C592002688C6 /* bg@2x~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 94BF03851A95C592002688C6 /* bg@2x~iphone.png */; };
-		94BF038A1A95C592002688C6 /* bg@3x~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 94BF03861A95C592002688C6 /* bg@3x~iphone.png */; };
-		94BF038B1A95C592002688C6 /* bg~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 94BF03871A95C592002688C6 /* bg~ipad.png */; };
 		94BF038F1A95C93F002688C6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 94BF038E1A95C93F002688C6 /* Images.xcassets */; };
 		94BF03921A95C958002688C6 /* Character.m in Sources */ = {isa = PBXBuildFile; fileRef = 94BF03911A95C958002688C6 /* Character.m */; };
 		94BF03941A95C96D002688C6 /* Launch Screen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94BF03931A95C96D002688C6 /* Launch Screen.xib */; };
 		94BF039C1A95C98C002688C6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 94BF03991A95C98C002688C6 /* AppDelegate.m */; };
 		94BF039D1A95C98C002688C6 /* GameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94BF039B1A95C98C002688C6 /* GameViewController.m */; };
-		94BF03A31A95C99C002688C6 /* InfiniteGameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 94BF03A11A95C99C002688C6 /* InfiniteGameScene.m */; };
+		94BF03A31A95C99C002688C6 /* LevelGameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 94BF03A11A95C99C002688C6 /* LevelGameScene.m */; };
 		94C8479B1AC25273003AB0DC /* character.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 94C8479A1AC25273003AB0DC /* character.atlas */; };
 		94D9AE091AA841160071D14B /* Shaders in Resources */ = {isa = PBXBuildFile; fileRef = 94D9AE081AA841160071D14B /* Shaders */; };
 /* End PBXBuildFile section */
@@ -75,10 +71,6 @@
 		94A75E791A9CEB8000057C48 /* UserInputController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInputController.h; sourceTree = "<group>"; };
 		94A75E7A1A9CEB8000057C48 /* UserInputController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInputController.m; sourceTree = "<group>"; };
 		94BF03821A95C4C3002688C6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = Noodle/en.lproj/InfoPlist.strings; sourceTree = SOURCE_ROOT; };
-		94BF03841A95C592002688C6 /* bg@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "bg@2x~ipad.png"; path = "Noodle/Resources/backgrounds/bg@2x~ipad.png"; sourceTree = SOURCE_ROOT; };
-		94BF03851A95C592002688C6 /* bg@2x~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "bg@2x~iphone.png"; path = "Noodle/Resources/backgrounds/bg@2x~iphone.png"; sourceTree = SOURCE_ROOT; };
-		94BF03861A95C592002688C6 /* bg@3x~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "bg@3x~iphone.png"; path = "Noodle/Resources/backgrounds/bg@3x~iphone.png"; sourceTree = SOURCE_ROOT; };
-		94BF03871A95C592002688C6 /* bg~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "bg~ipad.png"; path = "Noodle/Resources/backgrounds/bg~ipad.png"; sourceTree = SOURCE_ROOT; };
 		94BF038E1A95C93F002688C6 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Noodle/Images.xcassets; sourceTree = SOURCE_ROOT; };
 		94BF03901A95C958002688C6 /* Character.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Character.h; path = Noodle/Character.h; sourceTree = SOURCE_ROOT; };
 		94BF03911A95C958002688C6 /* Character.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Character.m; path = Noodle/Character.m; sourceTree = SOURCE_ROOT; };
@@ -88,8 +80,8 @@
 		94BF03991A95C98C002688C6 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = Noodle/AppDelegate.m; sourceTree = SOURCE_ROOT; };
 		94BF039A1A95C98C002688C6 /* GameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameViewController.h; path = Noodle/GameViewController.h; sourceTree = SOURCE_ROOT; };
 		94BF039B1A95C98C002688C6 /* GameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GameViewController.m; path = Noodle/GameViewController.m; sourceTree = SOURCE_ROOT; };
-		94BF03A01A95C99C002688C6 /* InfiniteGameScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InfiniteGameScene.h; path = Noodle/InfiniteGameScene.h; sourceTree = SOURCE_ROOT; };
-		94BF03A11A95C99C002688C6 /* InfiniteGameScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InfiniteGameScene.m; path = Noodle/InfiniteGameScene.m; sourceTree = SOURCE_ROOT; };
+		94BF03A01A95C99C002688C6 /* LevelGameScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LevelGameScene.h; path = Noodle/LevelGameScene.h; sourceTree = SOURCE_ROOT; };
+		94BF03A11A95C99C002688C6 /* LevelGameScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LevelGameScene.m; path = Noodle/LevelGameScene.m; sourceTree = SOURCE_ROOT; };
 		94C8479A1AC25273003AB0DC /* character.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = character.atlas; sourceTree = "<group>"; };
 		94D9AE081AA841160071D14B /* Shaders */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Shaders; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -180,20 +172,8 @@
 				94D9AE081AA841160071D14B /* Shaders */,
 				94A70E021A9C27DF00C9598E /* Levels */,
 				94A70DFC1A9C24F800C9598E /* backgrounds.atlas */,
-				66DF6A5417FB87DA00CC9BD1 /* backgrounds */,
 			);
 			path = Resources;
-			sourceTree = "<group>";
-		};
-		66DF6A5417FB87DA00CC9BD1 /* backgrounds */ = {
-			isa = PBXGroup;
-			children = (
-				94BF03841A95C592002688C6 /* bg@2x~ipad.png */,
-				94BF03851A95C592002688C6 /* bg@2x~iphone.png */,
-				94BF03861A95C592002688C6 /* bg@3x~iphone.png */,
-				94BF03871A95C592002688C6 /* bg~ipad.png */,
-			);
-			path = backgrounds;
 			sourceTree = "<group>";
 		};
 		9419345A1AA30D5700DDEA00 /* UI */ = {
@@ -220,8 +200,8 @@
 		944236F91A95CBF30006C68B /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
-				94BF03A01A95C99C002688C6 /* InfiniteGameScene.h */,
-				94BF03A11A95C99C002688C6 /* InfiniteGameScene.m */,
+				94BF03A01A95C99C002688C6 /* LevelGameScene.h */,
+				94BF03A11A95C99C002688C6 /* LevelGameScene.m */,
 				940DFE871AA8C8F200BA22EA /* SceneBase.h */,
 				940DFE881AA8C8F200BA22EA /* SceneBase.m */,
 			);
@@ -341,15 +321,11 @@
 				94D9AE091AA841160071D14B /* Shaders in Resources */,
 				944236FB1A95CEBA0006C68B /* Game.storyboard in Resources */,
 				94A70E031A9C27DF00C9598E /* Levels in Resources */,
-				94BF038A1A95C592002688C6 /* bg@3x~iphone.png in Resources */,
-				94BF038B1A95C592002688C6 /* bg~ipad.png in Resources */,
 				94C8479B1AC25273003AB0DC /* character.atlas in Resources */,
 				94BF038F1A95C93F002688C6 /* Images.xcassets in Resources */,
 				9462731D1AAF4C85001F55AF /* Settings.xib in Resources */,
-				94BF03881A95C592002688C6 /* bg@2x~ipad.png in Resources */,
 				94BF03831A95C4C3002688C6 /* InfoPlist.strings in Resources */,
 				94A70DFD1A9C24F800C9598E /* backgrounds.atlas in Resources */,
-				94BF03891A95C592002688C6 /* bg@2x~iphone.png in Resources */,
 				9462731F1AAF4DCA001F55AF /* MainMenu.xib in Resources */,
 				94BF03941A95C96D002688C6 /* Launch Screen.xib in Resources */,
 			);
@@ -372,7 +348,7 @@
 				94A75E7B1A9CEB8000057C48 /* UserInputController.m in Sources */,
 				942464B61AA61DB80031E7C8 /* MainMenu.m in Sources */,
 				94BF039C1A95C98C002688C6 /* AppDelegate.m in Sources */,
-				94BF03A31A95C99C002688C6 /* InfiniteGameScene.m in Sources */,
+				94BF03A31A95C99C002688C6 /* LevelGameScene.m in Sources */,
 				948FDDF11A95C47200C60756 /* main.m in Sources */,
 				9490CE8F1A9B98F500DA7382 /* SceneryManager.m in Sources */,
 			);
@@ -473,8 +449,6 @@
 		66DF6A4D17FB871B00CC9BD1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = Noodle/Noodle.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -498,8 +472,6 @@
 		66DF6A4E17FB871B00CC9BD1 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = Noodle/Noodle.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
