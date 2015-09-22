@@ -8,7 +8,7 @@
 #import "SettingsStorage.h"
 #import "Character.h"
 
-#define START_DENSITY 5.0f
+#define START_DENSITY 4.0f
 #define MAX_TAP_DISTANCE 4.0f
 #define MAX_FLING_COUNT 1
 #define SLOWDOWN_SPEED 0.25f
@@ -25,7 +25,7 @@ static const uint32_t characterCategory  = 0x1 << 0;  // 00000000000000000000000
     {
         self.position = position;
         
-        self.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(self.frame.size.width/2.0f, self.frame.size.height - 4.0f)];
+        self.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(self.frame.size.width/2.0f, self.frame.size.height - 6.0f)];
         self.physicsBody.restitution = 0;
         self.physicsBody.density = START_DENSITY;
         self.physicsBody.allowsRotation = false;

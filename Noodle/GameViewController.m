@@ -36,6 +36,8 @@
         
         NSString *scenePath = [[NSBundle mainBundle] pathForResource:@"Levels/FirstGameLevel" ofType:@"sks"];
         LevelGameScene *scene = [LevelGameScene unarchiveFromFile:scenePath];
+        
+        scene.scaleMode = SKSceneScaleModeAspectFill;
 
         [skView presentScene:scene];
     }
@@ -51,7 +53,7 @@
     return YES;
 }
 
-- (NSUInteger)supportedInterfaceOrientations
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations
 {
     return UIInterfaceOrientationMaskPortrait;
 }

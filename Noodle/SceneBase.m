@@ -72,20 +72,9 @@
 //
 // Setup
 ///////////////////////////////////////////////
--(id)initWithSize:(CGSize)size
-{
-    if (self = [super initWithSize:size])
-    {
-        self.size = size;
-        [self setup];
-    }
-    return self;
-}
-
 -(void) setup
 {
     self.shouldEnableEffects = YES;
-    self.scaleMode = SKSceneScaleModeAspectFill;
     self.physicsWorld.gravity = CGVectorMake(0.0, -6.0);
   
     world = [self childNodeWithName:@"World"];

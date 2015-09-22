@@ -1,5 +1,5 @@
 //
-//  MyScene.m
+//  LevelGameScene.m
 //  Noodle
 //
 //
@@ -77,7 +77,7 @@
     }
     else if(secondBody == character.physicsBody)
     {
-        [character endTouchBody:secondBody contactNormal:contact.contactNormal];
+        [character endTouchBody:firstBody contactNormal:contact.contactNormal];
     }
 }
 
