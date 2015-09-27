@@ -170,4 +170,14 @@
                                        node.parent.position.y - cameraPositionInScene.y);
 }
 
+-(void) setCamera:(Camera*) value
+{
+    camera = value;
+}
+
+-(Camera*) getCamera
+{
+    return camera;
+}
+
 @end

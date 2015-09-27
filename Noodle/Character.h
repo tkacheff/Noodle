@@ -25,6 +25,8 @@
     UITouch* flingTouch;
     CGPoint initFlingPos;
     
+    CGVector lastVelocity;
+    
     // User Configs
     BOOL flingIsInverted;
     float flingSensitivity;

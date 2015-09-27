@@ -20,6 +20,7 @@
 		9462731D1AAF4C85001F55AF /* Settings.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9462731C1AAF4C85001F55AF /* Settings.xib */; };
 		9462731F1AAF4DCA001F55AF /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9462731E1AAF4DCA001F55AF /* MainMenu.xib */; };
 		946273221AAF544D001F55AF /* Settings.m in Sources */ = {isa = PBXBuildFile; fileRef = 946273211AAF544D001F55AF /* Settings.m */; };
+		9465EA381BB893C00097A1EA /* Math.m in Sources */ = {isa = PBXBuildFile; fileRef = 9465EA371BB893C00097A1EA /* Math.m */; settings = {ASSET_TAGS = (); }; };
 		948FDDF11A95C47200C60756 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 948FDDEE1A95C47200C60756 /* main.m */; };
 		9490CE8B1A9B909400DA7382 /* Camera.m in Sources */ = {isa = PBXBuildFile; fileRef = 9490CE8A1A9B909400DA7382 /* Camera.m */; };
 		9490CE8F1A9B98F500DA7382 /* SceneryManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9490CE8E1A9B98F500DA7382 /* SceneryManager.m */; };
@@ -57,6 +58,8 @@
 		9462731E1AAF4DCA001F55AF /* MainMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainMenu.xib; sourceTree = "<group>"; };
 		946273201AAF544D001F55AF /* Settings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Settings.h; sourceTree = "<group>"; };
 		946273211AAF544D001F55AF /* Settings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Settings.m; sourceTree = "<group>"; };
+		9465EA371BB893C00097A1EA /* Math.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Math.m; sourceTree = "<group>"; };
+		9465EA391BB893E20097A1EA /* Math.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Math.h; sourceTree = "<group>"; };
 		948FDDEE1A95C47200C60756 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Noodle/main.m; sourceTree = SOURCE_ROOT; };
 		948FDDEF1A95C47200C60756 /* Noodle-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "Noodle-Info.plist"; path = "Noodle/Noodle-Info.plist"; sourceTree = SOURCE_ROOT; };
 		948FDDF01A95C47200C60756 /* Noodle-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Noodle-Prefix.pch"; path = "Noodle/Noodle-Prefix.pch"; sourceTree = SOURCE_ROOT; };
@@ -136,6 +139,7 @@
 		66DF6A1E17FB871B00CC9BD1 /* Noodle */ = {
 			isa = PBXGroup;
 			children = (
+				9465EA361BB893A50097A1EA /* Utility */,
 				94A6C53A1AB3489800193168 /* Storage */,
 				9419345A1AA30D5700DDEA00 /* UI */,
 				94A75E781A9CEB3000057C48 /* User Input */,
@@ -217,6 +221,15 @@
 				94BF039B1A95C98C002688C6 /* GameViewController.m */,
 			);
 			name = "iOS Stuff";
+			sourceTree = "<group>";
+		};
+		9465EA361BB893A50097A1EA /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				9465EA371BB893C00097A1EA /* Math.m */,
+				9465EA391BB893E20097A1EA /* Math.h */,
+			);
+			name = Utility;
 			sourceTree = "<group>";
 		};
 		94A6C53A1AB3489800193168 /* Storage */ = {
@@ -347,6 +360,7 @@
 				940DFE891AA8C8F200BA22EA /* SceneBase.m in Sources */,
 				94A75E7B1A9CEB8000057C48 /* UserInputController.m in Sources */,
 				942464B61AA61DB80031E7C8 /* MainMenu.m in Sources */,
+				9465EA381BB893C00097A1EA /* Math.m in Sources */,
 				94BF039C1A95C98C002688C6 /* AppDelegate.m in Sources */,
 				94BF03A31A95C99C002688C6 /* LevelGameScene.m in Sources */,
 				948FDDF11A95C47200C60756 /* main.m in Sources */,

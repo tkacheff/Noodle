@@ -7,6 +7,8 @@
 
 #import "SettingsStorage.h"
 #import "Character.h"
+#import "SceneBase.h"
+#import "Math.h"
 
 #define START_DENSITY 4.0f
 #define MAX_TAP_DISTANCE 4.0f
@@ -26,7 +28,7 @@ static const uint32_t characterCategory  = 0x1 << 0;  // 00000000000000000000000
         self.position = position;
         
         self.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(self.frame.size.width/2.0f, self.frame.size.height - 6.0f)];
-        self.physicsBody.restitution = 0;
+        self.physicsBody.restitution = 0.5f;
         self.physicsBody.density = START_DENSITY;
         self.physicsBody.allowsRotation = false;
         self.physicsBody.friction = 1.0;
@@ -83,6 +85,8 @@ static const uint32_t characterCategory  = 0x1 << 0;  // 00000000000000000000000
 
 -(void) update:(CFTimeInterval)currentTime
 {
+    lastVelocity = self.physicsBody.velocity;
+    
     if (self.scene.view.paused)
     {
         flingTouch = nil;
@@ -97,6 +101,19 @@ static const uint32_t characterCategory  = 0x1 << 0;  // 00000000000000000000000
     }
     
     lastTimeUpdate = currentTime;
+}
+
+-(void) setCameraZoom:(CGFloat) newZoom
+{
+    if ([self.scene isKindOfClass:[SceneBase class]])
+    {
+        SceneBase* gameScene = (SceneBase*)self.scene;
+        Camera* camera = [gameScene getCamera];
+        if (camera)
+        {
+            [camera setZoom:newZoom];
+        }
+    }
 }
 
 
@@ -319,7 +336,7 @@ static const uint32_t characterCategory  = 0x1 << 0;  // 00000000000000000000000
 /////////////////////////////////////////////
 -(void) endTouchBody:(SKPhysicsBody*) otherBody contactNormal:(CGVector)contactNormal
 {
-    if (sideTouchBody == otherBody && fabs(contactNormal.dx) >= 0.5)
+    if (sideTouchBody == otherBody)
     {
         sideTouchBody = nil;
     }
@@ -338,9 +355,8 @@ static const uint32_t characterCategory  = 0x1 << 0;  // 00000000000000000000000
 
 -(void) startTouchBody:(SKPhysicsBody*) otherBody contactNormal:(CGVector)contactNormal
 {
-    if (sideTouchBody == nil && fabs(contactNormal.dx) >= 0.5)
+    if (fabs(contactNormal.dx) >= 0.5)
     {
-        [self.physicsBody applyImpulse:CGVectorMake(0, -self.scene.physicsWorld.gravity.dy)];
         sideTouchBody = otherBody;
     }
     

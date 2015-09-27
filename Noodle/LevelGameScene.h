@@ -13,6 +13,5 @@
 @interface LevelGameScene : SceneBase<SKPhysicsContactDelegate>
 {
     Character *character;
-    Camera *camera;
 }
 @end

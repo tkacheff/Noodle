@@ -25,6 +25,7 @@
     
     camera = [[Camera alloc] initWithSize:self.size type:CameraTypeFollowPlayer];
     [world addChild:camera];
+    [self setCamera:camera];
     
     SKSpriteNode* background = [[SKSpriteNode alloc] initWithTexture:[SKTexture textureWithImageNamed:@"TestBackground.png"]];
     [background setSize:CGSizeMake(self.size.width, world.scene.size.height * 20.0f)];

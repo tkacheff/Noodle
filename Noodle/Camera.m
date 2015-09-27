@@ -25,6 +25,7 @@
             default: speed = CGVectorMake(0.0f, 0.0f); break;
         }
         
+        zoom = 1.0f;
         alpha = 0.2;
         fSmoothY = self.position.y;
     }
@@ -58,6 +59,14 @@
     self.position = CGPointMake(self.position.x, self.position.y + fSmoothY);
 }
 
+-(void) setZoom:(CGFloat) newZoom
+{
+    if (newZoom > 0.0f)
+    {
+        zoom = newZoom;
+    }
+}
+
 -(CGVector) update:(CFTimeInterval)currentTime character:(Character*) character
 {
     if (self.scene.view.paused)
@@ -71,6 +80,8 @@
         lastTimeUpdate = currentTime;
         return CGVectorMake(0, 0);
     }
+    
+    self.scene.size = CGSizeMake(screenSize.width * zoom, screenSize.height * zoom);
     
     float timeDelta = currentTime - lastTimeUpdate;
     CGPoint lastCamPos = self.position;

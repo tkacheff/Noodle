@@ -25,10 +25,13 @@ typedef NS_ENUM(NSInteger, CameraType) {
     
     CGFloat alpha;
     CGFloat fSmoothY;
+    
+    CGFloat zoom;
 }
 
 -(id)initWithSize:(CGSize)size type:(CameraType) cameraType;
 
 -(CGVector) update:(CFTimeInterval)currentTime character:(Character*) character;
+-(void) setZoom:(CGFloat) newZoom;
 
 @end

@@ -7,6 +7,7 @@
 //
 
 #import <SpriteKit/SpriteKit.h>
+#import "Camera.h"
 
 @class SceneryManager;
 @class InGameUI;
@@ -15,6 +16,8 @@
 {
     SceneryManager* sceneryManager;
     InGameUI* ui;
+    
+    Camera* camera;
     
     SKNode* world;
     
@@ -29,6 +32,9 @@
 -(void)pauseGame;
 -(void)unpauseGame;
 -(BOOL)getPaused;
+
+-(void) setCamera:(Camera*) value;
+-(Camera*) getCamera;
 
 -(void) pausedUpdate;
 
