@@ -1,13 +1,13 @@
 //
-//  MainMenu.h
+//  Tutorial.m
 //  Noodle
 //
 //  Created by Ben Tkacheff on 4/2/16.
 //  Copyright © 2016 Ben Tkacheff. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "Tutorial.h"
 
-@interface MainMenu : UIViewController
+@implementation Tutorial
 
 @end

@@ -8,10 +8,10 @@
 
 #import "SceneBase.h"
 
-#import "LevelGameScene.h"
+#import "InfiniteGameScene.h"
 #import "SceneryManager.h"
 #import "InGameUI.h"
-
+#import "Character.h"
 
 @implementation SceneBase
 
@@ -74,6 +74,9 @@
 ///////////////////////////////////////////////
 -(void) setup
 {
+    elapsedGameTime = [[NSNumber alloc] initWithLongLong:0];
+    lastFrameTime = 0;
+    
     self.shouldEnableEffects = YES;
     self.physicsWorld.gravity = CGVectorMake(0.0, -6.0);
   
@@ -84,6 +87,19 @@
 
     sceneryManager = [[SceneryManager alloc] init];
     [self addChild:sceneryManager];
+    
+    SKNode* spawnPoint = [self childNodeWithName:@"World//SpawnPoint"];
+    if (spawnPoint)
+    {
+        character = [[Character alloc] initWithSize:self.size position:spawnPoint.position];
+    }
+    else
+    {
+        character = [[Character alloc] initWithSize:self.size position:CGPointMake(0, 0)];
+    }
+    
+    character.zPosition = 5;
+    [world addChild:character];
     
     [self registerAppTransitionObservers];
 }
@@ -100,9 +116,29 @@
 // Pause/State Handling
 ////////////////////////////////////////////////////////////
 
+-(void)update:(CFTimeInterval)currentTime
+{
+    if (lastFrameTime != 0)
+    {
+        CGFloat delta = currentTime - lastFrameTime;
+        elapsedGameTime = @([elapsedGameTime floatValue] + delta);
+        //NSLog(@"elapsed time is %@, delta is %f", elapsedGameTime, delta);
+    }
+    lastFrameTime = currentTime;
+    
+    CGFloat charYPos = character.position.y + character.size.height/2.0f;
+    CGFloat lowestVisiblePoint = camera.position.y - self.frame.size.height/2.0f;
+    
+    if (charYPos < lowestVisiblePoint)
+    {
+        [self gameOver];
+    }
+}
+
+// override these in inherited classes for update when game pauses
 -(void) pausedUpdate
 {
-    // override these in inherited classes for update when game pauses
+    lastFrameTime = 0;
 }
 
 -(void)pauseGame
@@ -124,13 +160,24 @@
     return isPaused;
 }
 
+-(void)quitGame
+{
+    [self pauseGame];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"KillGame" object:self];
+}
+
+-(void) gameOver
+{
+    //todo: cool post scores -> death thing -> menu
+}
+
 -(void) applicationDidEnterBackground
 {
     [self pauseGame];
 }
 -(void)applicationWillEnterForeground
 {
-    [self unpauseGame];
+    //[self unpauseGame];
 }
 -(void)applicationWillResignActive
 {

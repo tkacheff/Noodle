@@ -6,7 +6,7 @@
 
 #import <SpriteKit/SpriteKit.h>
 
-@class MainMenu;
+@class InGameMainMenu;
 
 @interface GameViewController : UIViewController
 {

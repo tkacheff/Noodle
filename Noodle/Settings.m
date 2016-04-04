@@ -41,9 +41,9 @@
 
 -(void) transitionOut
 {
-    [UIView animateWithDuration:0.5
+    [UIView animateWithDuration:0.1
                           delay:0.0
-                        options:UIViewAnimationOptionCurveEaseIn
+                        options:UIViewAnimationOptionCurveEaseOut
                      animations:^{
                          self.alpha = 0;
                      }

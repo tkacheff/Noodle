@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1510" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -10,11 +11,12 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <slider opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.10000000000000001" maxValue="1.5" translatesAutoresizingMaskIntoConstraints="NO" id="IFV-bI-tpI">
+                <slider opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.10000000000000001" minValue="0.040000000000000001" maxValue="0.20000000000000001" translatesAutoresizingMaskIntoConstraints="NO" id="IFV-bI-tpI">
                     <rect key="frame" x="61" y="161" width="181" height="31"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="C5D-am-fSg"/>
                         <constraint firstAttribute="width" constant="228" id="Tdq-T9-UN5"/>
+                        <constraint firstAttribute="width" constant="177" id="cVm-7t-K2D"/>
                     </constraints>
                     <variation key="default">
                         <mask key="constraints">
@@ -172,6 +174,7 @@
                 <constraint firstItem="wCx-NG-3wT" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="118" id="S39-hr-oJ8"/>
                 <constraint firstAttribute="centerX" secondItem="IFV-bI-tpI" secondAttribute="centerX" id="SMW-FP-2r4"/>
                 <constraint firstItem="HQt-oK-ZLg" firstAttribute="top" secondItem="Mef-Sy-qO1" secondAttribute="bottom" constant="77" id="Saq-9l-EqQ"/>
+                <constraint firstItem="IFV-bI-tpI" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="161" id="bep-h1-B3e"/>
                 <constraint firstItem="IFV-bI-tpI" firstAttribute="top" secondItem="wCx-NG-3wT" secondAttribute="bottom" constant="31" id="hZk-IK-ZYr"/>
                 <constraint firstItem="Mef-Sy-qO1" firstAttribute="top" secondItem="IFV-bI-tpI" secondAttribute="bottom" constant="13" id="llE-Lj-bt2"/>
             </constraints>

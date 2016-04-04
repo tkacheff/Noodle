@@ -15,6 +15,7 @@
 #define MAX_FLING_COUNT 1
 #define SLOWDOWN_SPEED 0.25f
 #define NUM_OF_PROJECTIONS 17
+#define RESTITUTION 0.5f
 
 static const uint32_t characterCategory  = 0x1 << 0;  // 00000000000000000000000000000001
 
@@ -28,7 +29,7 @@ static const uint32_t characterCategory  = 0x1 << 0;  // 00000000000000000000000
         self.position = position;
         
         self.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(self.frame.size.width/2.0f, self.frame.size.height - 6.0f)];
-        self.physicsBody.restitution = 0.5f;
+        self.physicsBody.restitution = RESTITUTION;
         self.physicsBody.density = START_DENSITY;
         self.physicsBody.allowsRotation = false;
         self.physicsBody.friction = 1.0;
@@ -241,15 +242,14 @@ static const uint32_t characterCategory  = 0x1 << 0;  // 00000000000000000000000
 
 -(CGVector) getCurrentImpulse:(CGPoint) newPos initPos:(CGPoint) initPos
 {
-    CGVector impulse = CGVectorMake(0, 0);
+    CGVector impulse;
+    float invertValue = -1;
     if (flingIsInverted)
     {
-        impulse = CGVectorMake( (initPos.x - newPos.x) * self.physicsBody.density * flingSensitivity, (initPos.y - newPos.y) * self.physicsBody.density * flingSensitivity);
+        invertValue = 1;
     }
-    else
-    {
-        impulse = CGVectorMake( (newPos.x - initPos.x) * self.physicsBody.density * flingSensitivity, (newPos.y - initPos.y) * self.physicsBody.density * flingSensitivity);
-    }
+    
+    impulse = CGVectorMake( invertValue * (newPos.x - initPos.x) * self.physicsBody.density * flingSensitivity, invertValue * (newPos.y - initPos.y) * self.physicsBody.density * flingSensitivity);
     
     const float length = sqrt(impulse.dx * impulse.dx + impulse.dy * impulse.dy);
     const float maxImpulseForce = maxFlingImpulseConstant * self.physicsBody.density;
@@ -348,6 +348,7 @@ static const uint32_t characterCategory  = 0x1 << 0;  // 00000000000000000000000
         {
             flingRemainCount--;
         }
+        self.physicsBody.restitution = RESTITUTION;
         platformStanding = NO;
         sideTouchBody = nil;
     }
@@ -355,6 +356,12 @@ static const uint32_t characterCategory  = 0x1 << 0;  // 00000000000000000000000
 
 -(void) startTouchBody:(SKPhysicsBody*) otherBody contactNormal:(CGVector)contactNormal
 {
+    // hack to get rect body loop to work
+    if (![otherBody.node isKindOfClass:[SKSpriteNode class]])
+    {
+        contactNormal = CGVectorMake(contactNormal.dx, -contactNormal.dy);
+    }
+    
     if (fabs(contactNormal.dx) >= 0.5)
     {
         sideTouchBody = otherBody;
@@ -362,20 +369,21 @@ static const uint32_t characterCategory  = 0x1 << 0;  // 00000000000000000000000
     
     if (contactNormal.dy <= -0.8)
     {
-        self.physicsBody.affectedByGravity = NO;
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(ceilingHangTime * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            self.physicsBody.affectedByGravity = YES;
-        });
-    }
-    else if(contactNormal.dy >= 0.8)
-    {
         if (!platformStanding)
         {
             self.physicsBody.velocity = CGVectorMake(0, 0);
+            self.physicsBody.restitution = 0.0f;
             self.scene.physicsWorld.speed = 1.0;
             platformStanding = YES;
         }
         flingRemainCount = MAX_FLING_COUNT;
+    }
+    else if(contactNormal.dy >= 0.8)
+    {
+        self.physicsBody.affectedByGravity = NO;
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(ceilingHangTime * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            self.physicsBody.affectedByGravity = YES;
+        });
     }
     
 }

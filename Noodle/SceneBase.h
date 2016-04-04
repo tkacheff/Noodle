@@ -7,10 +7,11 @@
 //
 
 #import <SpriteKit/SpriteKit.h>
-#import "Camera.h"
+#include "Camera.h"
 
 @class SceneryManager;
 @class InGameUI;
+@class Character;
 
 @interface SceneBase : SKScene
 {
@@ -19,9 +20,14 @@
     
     Camera* camera;
     
+    Character* character;
+    
     SKNode* world;
     
     BOOL isPaused;
+    
+    NSNumber* elapsedGameTime;
+    CFTimeInterval lastFrameTime;
 }
 
 + (instancetype)unarchiveFromFile:(NSString *)file;
@@ -32,6 +38,8 @@
 -(void)pauseGame;
 -(void)unpauseGame;
 -(BOOL)getPaused;
+
+-(void)quitGame;
 
 -(void) setCamera:(Camera*) value;
 -(Camera*) getCamera;

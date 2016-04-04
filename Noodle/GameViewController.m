@@ -5,8 +5,8 @@
 //
 
 #import "GameViewController.h"
-#import "LevelGameScene.h"
-#import "MainMenu.h"
+#import "InfiniteGameScene.h"
+#import "InGameMainMenu.h"
 
 @implementation GameViewController
 
@@ -14,9 +14,15 @@
 {
     if (self = [super initWithCoder:aDecoder])
     {
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(killGame:) name:@"KillGame" object:nil];
     }
     
     return self;
+}
+
+-(void) dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)viewWillLayoutSubviews
@@ -34,13 +40,20 @@
 #endif
         // todo: choose what level to load
         
-        NSString *scenePath = [[NSBundle mainBundle] pathForResource:@"Levels/FirstGameLevel" ofType:@"sks"];
-        LevelGameScene *scene = [LevelGameScene unarchiveFromFile:scenePath];
+        NSString *scenePath = [[NSBundle mainBundle] pathForResource:@"Levels/InfiniteLevel" ofType:@"sks"];
+        InfiniteGameScene *scene = [InfiniteGameScene unarchiveFromFile:scenePath];
         
         scene.scaleMode = SKSceneScaleModeAspectFill;
 
         [skView presentScene:scene];
     }
+}
+
+-(void) killGame:(NSNotification*) notification
+{
+    //dispatch_async(dispatch_get_main_queue(), ^{
+        [self dismissViewControllerAnimated:YES completion:^{}];
+    //});
 }
 
 - (BOOL)prefersStatusBarHidden

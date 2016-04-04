@@ -8,6 +8,8 @@
 #import "Camera.h"
 #import "Character.h"
 
+#define MAX_SPEED_UP 5
+#define SPEED_UP_PERIOD 100.0f
 
 @implementation Camera
 
@@ -26,23 +28,51 @@
         }
         
         zoom = 1.0f;
-        alpha = 0.2;
+        alpha = 0.01;
         fSmoothY = self.position.y;
+        
+        minSpeedUpTime = 20;
     }
     
     return self;
 }
 
--(void) infiniteUpUpdate:(float) timeDelta character:(Character*) character
+-(CGFloat) calculateTimeSpeedup:(NSNumber*) totalTime
 {
-    float amountToMove = speed.dy * timeDelta;
-    if (character.position.y > self.position.y )
+    float total = [totalTime floatValue];
+    if (total < minSpeedUpTime)
     {
-        const float times = (character.position.y/self.position.y) * 2.5f;
-        amountToMove *= times;
+        return 1;
     }
     
-    self.position = CGPointMake(self.position.x, self.position.y + amountToMove);
+    CGFloat timeSpeedUp = total / SPEED_UP_PERIOD;
+    
+    if (timeSpeedUp > MAX_SPEED_UP)
+    {
+        timeSpeedUp = MAX_SPEED_UP;
+    }
+    else if (timeSpeedUp < 1)
+    {
+        return 1;
+    }
+    
+    return timeSpeedUp;
+}
+
+-(void) infiniteUpUpdate:(float) timeDelta totalTime:(NSNumber*) totalTime character:(Character*) character
+{
+    CGFloat timeSpeedUp = [self calculateTimeSpeedup:totalTime];
+    
+    float amountToMove = speed.dy * timeDelta * timeSpeedUp;
+    if (character.position.y > self.position.y )
+    {
+        amountToMove *= (character.position.y/self.position.y) * 2.5f;
+    }
+    
+    amountToMove = MAX(0.0, MIN(1.5, amountToMove));
+    
+    fSmoothY = fSmoothY * (1-alpha) + amountToMove * alpha;
+    self.position = CGPointMake(self.position.x, self.position.y + fSmoothY);
 }
 
 -(void) followPlayerUpdate:(float) timeDelta character:(Character*) character
@@ -53,6 +83,7 @@
     {
         ySpeed *= fabs(goalDeltaY)/(screenSize.height/4.0f);
     }
+    
     float amountToMove = goalDeltaY * ySpeed * timeDelta;
     
     fSmoothY = fSmoothY * (1-alpha) + amountToMove * alpha;
@@ -67,7 +98,7 @@
     }
 }
 
--(CGVector) update:(CFTimeInterval)currentTime character:(Character*) character
+-(CGVector) update:(CFTimeInterval)currentTime totalTime:(NSNumber*) totalTime character:(Character*) character
 {
     if (self.scene.view.paused)
     {
@@ -89,7 +120,7 @@
     switch (cameraType)
     {
         case CameraTypeInfiniteUp:
-            [self infiniteUpUpdate:timeDelta character:character];
+            [self infiniteUpUpdate:timeDelta totalTime:totalTime character:character];
             break;
         case CameraTypeFollowPlayer:
             [self followPlayerUpdate:timeDelta character:character];
