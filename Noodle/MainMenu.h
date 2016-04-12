@@ -10,4 +10,8 @@
 
 @interface MainMenu : UIViewController
 
+
+@property IBOutlet UIButton* startButton;
+@property IBOutlet UIButton* settingsButton;
+
 @end

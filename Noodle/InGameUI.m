@@ -37,7 +37,16 @@
 
 -(void) pauseButtonTapped
 {
-    [mainMenu show];
+    SceneBase* gameScene = (SceneBase*)parentView.scene;
+    [gameScene pauseGame];
+    
+    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Game" bundle:nil];
+    UIViewController *inGameMenu = [mainStoryboard instantiateViewControllerWithIdentifier:@"InGameMenu"];
+    [[gameScene getPresentingController] presentViewController:inGameMenu animated:YES completion:^{
+        NSLog(@"should have menu");
+    }];
+    
+   // [mainMenu show];
 }
 
 @end

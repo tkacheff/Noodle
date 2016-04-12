@@ -23,6 +23,9 @@
 		9462731D1AAF4C85001F55AF /* Settings.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9462731C1AAF4C85001F55AF /* Settings.xib */; };
 		946273221AAF544D001F55AF /* Settings.m in Sources */ = {isa = PBXBuildFile; fileRef = 946273211AAF544D001F55AF /* Settings.m */; };
 		9465EA381BB893C00097A1EA /* Math.m in Sources */ = {isa = PBXBuildFile; fileRef = 9465EA371BB893C00097A1EA /* Math.m */; };
+		9472BD651CB4F159007C5F7B /* AnimatedTransitioning.m in Sources */ = {isa = PBXBuildFile; fileRef = 9472BD621CB4F159007C5F7B /* AnimatedTransitioning.m */; };
+		9472BD661CB4F159007C5F7B /* TransitionDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9472BD641CB4F159007C5F7B /* TransitionDelegate.m */; };
+		9480414C1CBCB8B50081B796 /* InGameMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9480414B1CBCB8B50081B796 /* InGameMenuViewController.m */; };
 		948FDDF11A95C47200C60756 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 948FDDEE1A95C47200C60756 /* main.m */; };
 		9490CE8B1A9B909400DA7382 /* Camera.m in Sources */ = {isa = PBXBuildFile; fileRef = 9490CE8A1A9B909400DA7382 /* Camera.m */; };
 		9490CE8F1A9B98F500DA7382 /* SceneryManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9490CE8E1A9B98F500DA7382 /* SceneryManager.m */; };
@@ -39,7 +42,6 @@
 		94BF039D1A95C98C002688C6 /* GameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94BF039B1A95C98C002688C6 /* GameViewController.m */; };
 		94BF03A31A95C99C002688C6 /* InfiniteGameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 94BF03A11A95C99C002688C6 /* InfiniteGameScene.m */; };
 		94C8479B1AC25273003AB0DC /* character.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 94C8479A1AC25273003AB0DC /* character.atlas */; };
-		94D9AE091AA841160071D14B /* Shaders in Resources */ = {isa = PBXBuildFile; fileRef = 94D9AE081AA841160071D14B /* Shaders */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -68,6 +70,12 @@
 		946273211AAF544D001F55AF /* Settings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Settings.m; sourceTree = "<group>"; };
 		9465EA371BB893C00097A1EA /* Math.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Math.m; sourceTree = "<group>"; };
 		9465EA391BB893E20097A1EA /* Math.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Math.h; sourceTree = "<group>"; };
+		9472BD611CB4F159007C5F7B /* AnimatedTransitioning.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnimatedTransitioning.h; sourceTree = "<group>"; };
+		9472BD621CB4F159007C5F7B /* AnimatedTransitioning.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnimatedTransitioning.m; sourceTree = "<group>"; };
+		9472BD631CB4F159007C5F7B /* TransitionDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransitionDelegate.h; sourceTree = "<group>"; };
+		9472BD641CB4F159007C5F7B /* TransitionDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransitionDelegate.m; sourceTree = "<group>"; };
+		9480414A1CBCB8B50081B796 /* InGameMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InGameMenuViewController.h; sourceTree = "<group>"; };
+		9480414B1CBCB8B50081B796 /* InGameMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InGameMenuViewController.m; sourceTree = "<group>"; };
 		948FDDEE1A95C47200C60756 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Noodle/main.m; sourceTree = SOURCE_ROOT; };
 		948FDDEF1A95C47200C60756 /* Noodle-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "Noodle-Info.plist"; path = "Noodle/Noodle-Info.plist"; sourceTree = SOURCE_ROOT; };
 		948FDDF01A95C47200C60756 /* Noodle-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Noodle-Prefix.pch"; path = "Noodle/Noodle-Prefix.pch"; sourceTree = SOURCE_ROOT; };
@@ -95,7 +103,6 @@
 		94BF03A01A95C99C002688C6 /* InfiniteGameScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InfiniteGameScene.h; path = Noodle/InfiniteGameScene.h; sourceTree = SOURCE_ROOT; };
 		94BF03A11A95C99C002688C6 /* InfiniteGameScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InfiniteGameScene.m; path = Noodle/InfiniteGameScene.m; sourceTree = SOURCE_ROOT; };
 		94C8479A1AC25273003AB0DC /* character.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = character.atlas; sourceTree = "<group>"; };
-		94D9AE081AA841160071D14B /* Shaders */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Shaders; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -181,8 +188,8 @@
 		66DF6A5217FB87DA00CC9BD1 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				94C8EEDB1CBB76D2004DC98C /* Shaders */,
 				94C8479A1AC25273003AB0DC /* character.atlas */,
-				94D9AE081AA841160071D14B /* Shaders */,
 				94A70E021A9C27DF00C9598E /* Levels */,
 				94A70DFC1A9C24F800C9598E /* backgrounds.atlas */,
 			);
@@ -210,6 +217,8 @@
 				942464B51AA61DB80031E7C8 /* InGameMainMenu.m */,
 				9419345C1AA30D7D00DDEA00 /* InGameUI.h */,
 				9419345D1AA30D7D00DDEA00 /* InGameUI.m */,
+				9480414A1CBCB8B50081B796 /* InGameMenuViewController.h */,
+				9480414B1CBCB8B50081B796 /* InGameMenuViewController.m */,
 			);
 			name = "In-Game";
 			sourceTree = "<group>";
@@ -228,8 +237,8 @@
 		944236FA1A95CC000006C68B /* iOS Stuff */ = {
 			isa = PBXGroup;
 			children = (
-				94BF03981A95C98C002688C6 /* AppDelegate.h */,
 				94BF03991A95C98C002688C6 /* AppDelegate.m */,
+				94BF03981A95C98C002688C6 /* AppDelegate.h */,
 				94BF039A1A95C98C002688C6 /* GameViewController.h */,
 				94BF039B1A95C98C002688C6 /* GameViewController.m */,
 			);
@@ -239,10 +248,22 @@
 		9465EA361BB893A50097A1EA /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				9472BD601CB4F124007C5F7B /* Transition Delegate */,
 				9465EA371BB893C00097A1EA /* Math.m */,
 				9465EA391BB893E20097A1EA /* Math.h */,
 			);
 			name = Utility;
+			sourceTree = "<group>";
+		};
+		9472BD601CB4F124007C5F7B /* Transition Delegate */ = {
+			isa = PBXGroup;
+			children = (
+				9472BD611CB4F159007C5F7B /* AnimatedTransitioning.h */,
+				9472BD621CB4F159007C5F7B /* AnimatedTransitioning.m */,
+				9472BD631CB4F159007C5F7B /* TransitionDelegate.h */,
+				9472BD641CB4F159007C5F7B /* TransitionDelegate.m */,
+			);
+			name = "Transition Delegate";
 			sourceTree = "<group>";
 		};
 		94A6C53A1AB3489800193168 /* Storage */ = {
@@ -261,6 +282,13 @@
 				94A75E7A1A9CEB8000057C48 /* UserInputController.m */,
 			);
 			name = "User Input";
+			sourceTree = "<group>";
+		};
+		94C8EEDB1CBB76D2004DC98C /* Shaders */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Shaders;
 			sourceTree = "<group>";
 		};
 		94DC8CE21A92D80E00DC4DD8 /* Game Entities */ = {
@@ -346,7 +374,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				94D9AE091AA841160071D14B /* Shaders in Resources */,
 				944236FB1A95CEBA0006C68B /* Game.storyboard in Resources */,
 				94AF9A3E1CB079160065D3B4 /* InGameMainMenu.xib in Resources */,
 				94A70E031A9C27DF00C9598E /* Levels in Resources */,
@@ -376,12 +403,15 @@
 				940DFE891AA8C8F200BA22EA /* SceneBase.m in Sources */,
 				94A75E7B1A9CEB8000057C48 /* UserInputController.m in Sources */,
 				9440997C1CB2382C001F8116 /* SettingsViewController.m in Sources */,
+				9472BD651CB4F159007C5F7B /* AnimatedTransitioning.m in Sources */,
 				942464B61AA61DB80031E7C8 /* InGameMainMenu.m in Sources */,
 				9465EA381BB893C00097A1EA /* Math.m in Sources */,
 				94BF039C1A95C98C002688C6 /* AppDelegate.m in Sources */,
 				94BF03A31A95C99C002688C6 /* InfiniteGameScene.m in Sources */,
 				948FDDF11A95C47200C60756 /* main.m in Sources */,
+				9472BD661CB4F159007C5F7B /* TransitionDelegate.m in Sources */,
 				9490CE8F1A9B98F500DA7382 /* SceneryManager.m in Sources */,
+				9480414C1CBCB8B50081B796 /* InGameMenuViewController.m in Sources */,
 				944099771CB1A8DD001F8116 /* MainMenu.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

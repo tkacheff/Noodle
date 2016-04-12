@@ -10,6 +10,12 @@
 
 @interface SettingsViewController : UIViewController
 
+@property IBOutlet UILabel* invertControlsLabel;
+@property IBOutlet UISwitch* invertControlsSwitch;
 
+@property IBOutlet UILabel* sensitivityLabel;
+@property IBOutlet UISlider* sensitivitySlider;
+
+@property IBOutlet UIButton* backButton;
 
 @end

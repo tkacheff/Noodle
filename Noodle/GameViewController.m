@@ -45,15 +45,15 @@
         
         scene.scaleMode = SKSceneScaleModeAspectFill;
 
+        [scene setViewController:self];
+        
         [skView presentScene:scene];
     }
 }
 
 -(void) killGame:(NSNotification*) notification
 {
-    //dispatch_async(dispatch_get_main_queue(), ^{
-        [self dismissViewControllerAnimated:YES completion:^{}];
-    //});
+    [self dismissViewControllerAnimated:YES completion:^{}];
 }
 
 - (BOOL)prefersStatusBarHidden

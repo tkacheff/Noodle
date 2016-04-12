@@ -6,7 +6,6 @@
 
 #import "InfiniteGameScene.h"
 #import "SceneryManager.h"
-#import "InGameUI.h"
 #import "Character.h"
 #import "Camera.h"
 
@@ -34,19 +33,6 @@
     [background setZPosition:1];
     
     [sceneryManager addChild:background];
-    
-   /* SKNode* spawnPoint = [self childNodeWithName:@"World//SpawnPoint"];
-    if (spawnPoint)
-    {
-        character = [[Character alloc] initWithSize:self.size position:spawnPoint.position];
-    }
-    else
-    {
-        character = [[Character alloc] initWithSize:self.size position:CGPointMake(0, 0)];
-    }
-
-    character.zPosition = 5;
-    [world addChild:character];*/
     
     generationLookAhead = 500;
     highestPlatformPos = character.position.y - character.size.height;

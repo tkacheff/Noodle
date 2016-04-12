@@ -10,7 +10,7 @@
 
 @class Settings;
 
-@interface InGameMainMenu : UIVisualEffectView
+@interface InGameMainMenu : UIView
 {
     SKView* parentView;
     Settings* settings;

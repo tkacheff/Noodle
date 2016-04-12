@@ -17,6 +17,7 @@
 {
     SceneryManager* sceneryManager;
     InGameUI* ui;
+    UIViewController* uiViewController;
     
     Camera* camera;
     
@@ -45,5 +46,8 @@
 -(Camera*) getCamera;
 
 -(void) pausedUpdate;
+
+-(void) setViewController:(UIViewController*) presentingController;
+-(UIViewController*) getPresentingController;
 
 @end

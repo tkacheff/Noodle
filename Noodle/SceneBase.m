@@ -107,7 +107,18 @@
 -(void)didMoveToView:(SKView *)view
 {
     [self setup];
+    
     ui = [[InGameUI alloc] initWithView:self.view];
+}
+
+-(void) setViewController:(UIViewController*) presentingController
+{
+    uiViewController = presentingController;
+}
+
+-(UIViewController*) getPresentingController
+{
+    return uiViewController;
 }
 
 
@@ -122,7 +133,6 @@
     {
         CGFloat delta = currentTime - lastFrameTime;
         elapsedGameTime = @([elapsedGameTime floatValue] + delta);
-        //NSLog(@"elapsed time is %@, delta is %f", elapsedGameTime, delta);
     }
     lastFrameTime = currentTime;
     
